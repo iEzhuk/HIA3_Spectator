@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project ID="Arma3">
+	<Package ID="HIA3">
+		<Container ID="Specator">
+			<Key ID="STR_HIA3_Spectator_Help">
+				<Original>
+					&lt;br/&gt;
+					F1 - Help&lt;br/&gt;
+					&lt;br/&gt;
+					&lt;t color=&apos;#c7861b&apos;&gt;View&lt;/t&gt;:&lt;br/&gt;
+					←,↑,→,↓ - change target unit&lt;br/&gt;
+					RBM - Toogle internal view: 1st-person view\optic &lt;br/&gt;
+					Ctrl+RBM - Toogle internal view: 1st-person view\optic\3d-person view&lt;br/&gt;
+					A,W,S,D,Q,Z - Camera control&lt;br/&gt;
+					Ctrl+A,W,S,D,Q,Z - Reduced speed&lt;br/&gt;
+					Shift+A,W,S,D,Q,Z - Increase speed&lt;br/&gt;
+					+ - Zoom&lt;br/&gt;
+					- - Zoom out&lt;br/&gt;
+					Enter(NUM) - Default zoom &lt;br/&gt;
+					Space - Toogle camera state: Internal\External&lt;br/&gt;
+					T - Toggle unit tags: off\icon\name&lt;br/&gt;
+					N - Toogle vision: normal\NV\TI &lt;br/&gt;
+					M - Map&lt;br/&gt;
+					С - Show crew&lt;br/&gt;
+					H - Hide HUD&lt;br/&gt;
+					Ctrl+H - Hide 3D tags&lt;br/&gt;
+					&lt;br/&gt;
+					&lt;t color=&apos;#c7861b&apos;&gt;Map&lt;/t&gt;:&lt;br/&gt;
+					T - Toogle marker type: icon\name&lt;br/&gt;
+					Click - Free camera movement&lt;br/&gt;
+					Ctrl+Click - choose unit&lt;br/&gt;
+					&lt;br/&gt;
+					&lt;br/&gt;
+					Author: &lt;t color=&apos;#c7861b&apos;&gt;Ezhuk&lt;/t&gt;&lt;br/&gt;
+					Web: &lt;t color=&apos;#c7861b&apos;&gt;www.hia3.com    HI,A3 Project&lt;/t&gt;&lt;br/&gt;
+				</Original>
+				<Russian>
+					&lt;br/&gt;
+					F1 - Справка&lt;br/&gt;
+					&lt;br/&gt;
+					&lt;t color=&apos;#c7861b&apos;&gt;Обзор&lt;/t&gt;:&lt;br/&gt;
+					←,↑,→,↓ - смена игрока&lt;br/&gt;
+					RBM - Переключение режима внутренней камеры: 1st-person view\optic &lt;br/&gt;
+					Ctrl+RBM - Переключение режима внутренней камеры: 1st-person view\optic\3d-person view&lt;br/&gt;
+					A,W,S,D,Q,Z - Перемещение камеры&lt;br/&gt;
+					Ctrl+A,W,S,D,Q,Z - Замедленное перемещение камеры&lt;br/&gt;
+					Shift+A,W,S,D,Q,Z - Ускоренное перемещение камеры&lt;br/&gt;
+					+ - Приближение&lt;br/&gt;
+					- - Отдаление&lt;br/&gt;
+					Enter(NUM) - Приближение по умолчанию&lt;br/&gt;
+					Space - Смена вида&lt;br/&gt;
+					T - Смена типа подсветки юнитов&lt;br/&gt;
+					N - Смена режима камера&lt;br/&gt;
+					M - Показать/скрыть карту&lt;br/&gt;
+					С - Показать/скрыть экипаж техники&lt;br/&gt;
+					H - Скрыть интерфейс
+					Ctrl+H - Скрыть 3D интерфейс
+					&lt;br/&gt;
+					&lt;t color=&apos;#c7861b&apos;&gt;Карта&lt;/t&gt;:&lt;br/&gt;
+					T - Подсветка имен&lt;br/&gt;
+					Click - Перемещение свободной камеры&lt;br/&gt;
+					Ctrl+Click - Выбор юнита&lt;br/&gt;
+					&lt;br/&gt;
+					&lt;br/&gt;
+					Автор: &lt;t color=&apos;#c7861b&apos;&gt;Ezhuk&lt;/t&gt;&lt;br/&gt;
+					Сайт: &lt;t color=&apos;#c7861b&apos;&gt;www.hia3.com    HI,A3 Project&lt;/t&gt;&lt;br/&gt;
+				</Russian>
+			</Key>
+			<Key ID="STR_HIA3_Spectator_ShowEnemy">
+				<Original>
+					Show enemy
+				</Original>
+				<Russian>
+					Показывать противника
+				</Russian>
+			</Key>
+			<Key ID="STR_HIA3_Spectator_ShowEnemy_Desc">
+				<Original>
+					Add enemy units in target list
+				</Original>
+				<Russian>
+					Добавление в список игроков противника
+				</Russian>
+			</Key>
+			<Key ID="STR_HIA3_Spectator_Tags">
+				<Original>
+					Tag
+				</Original>
+				<Russian>
+					Подсветка 
+				</Russian>
+			</Key>
+			<Key ID="STR_HIA3_Spectator_Tags_Desc">
+				<Original>
+					Show 3D position of units 
+				</Original>
+				<Russian>
+					Подсветка позиций игроков
+				</Russian>
+			</Key>
+			<Key ID="STR_HIA3_Spectator_Tags_Empty">
+				<Original>
+					Disable
+				</Original>
+				<Russian>
+					Отключить
+				</Russian>
+			</Key>
+			<Key ID="STR_HIA3_Spectator_Tags_Icon">
+				<Original>
+					Only icon 
+				</Original>
+				<Russian>
+					Только иконка 
+				</Russian>
+			</Key>
+			<Key ID="STR_HIA3_Spectator_Tags_Name">
+				<Original>
+					Icon or name
+				</Original>
+				<Russian>
+					Иконка или имя
+				</Russian>
+			</Key>
+			<Key ID="STR_HIA3_Spectator_FreeView">
+				<Original>
+					Free camera
+				</Original>
+				<Russian>
+					Свободная камера
+				</Russian>
+			</Key>
+			<Key ID="STR_HIA3_Spectator_FreeViewTI">
+				<Original>
+					TI
+				</Original>
+				<Russian>
+					TI
+				</Russian>
+			</Key>
+			<Key ID="STR_HIA3_Spectator_SpecialAdmin">
+				<Original>
+					Administrator
+				</Original>
+				<Russian>
+					Администратор
+				</Russian>
+			</Key>
+			<Key ID="STR_HIA3_Spectator_SpecialAdmin_Desc">
+				<Original>
+					Enable all futures for administrator
+				</Original>
+				<Russian>
+					Доступность всех функций для администратора
+				</Russian>
+			</Key>
+			<Key ID="STR_HIA3_Minutes_short">
+				<Original>min</Original>
+				<Russian>мин</Russian>
+			</Key>	
+		</Container>
+	</Package>
+</Project>
