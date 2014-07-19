@@ -29,6 +29,7 @@ class CfgFunctions
 			class respawnSpecator{};
 			class rotateCamera{};
 			class sideToColor{};
+			class stopCam{};
 			class switchCameraState{};
 			class updateMarkers{};
 			class updateTagList{};

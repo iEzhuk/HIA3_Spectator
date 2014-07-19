@@ -238,7 +238,9 @@ switch (_event) do
 				};
 			};
 		};
-		
+		if(_key in [KEY_W,KEY_A,KEY_S,KEY_D,KEY_Q,KEY_Z]) then {
+			[] call HIA3_spectator_fnc_stopCam;
+		};
 		if (_key in actionKeys "ShowMap") then {
 			_return = true;
 		};
