@@ -112,13 +112,16 @@ switch (_event) do
 		PR(_ctrl)	= _arg select 3;
 		PR(_alt)	= _arg select 4;
 
-		if(_key != KEY_ESCAPE) then {
+		// check ALT+TAB 
+		if (_key == KEY_TAB && _alt) exitWith {};
+
+		if (_key != KEY_ESCAPE) then {
 			if !(_key in HIA3_Spectator_Keys) then {
 				HIA3_Spectator_Keys = HIA3_Spectator_Keys + [_key];
 			};
 		};
 
-		if(isNull findDisplay IDD_SPECTATOR_MAP_DISPLAY) then {
+		if (isNull findDisplay IDD_SPECTATOR_MAP_DISPLAY) then {
 			switch (HIA3_Spectator_State) do
 			{
 				case SPECT_VIEWSTATE_INTERNAL :
@@ -147,6 +150,9 @@ switch (_event) do
 
 		if!(isNull findDisplay IDD_SPECTATOR_MAP_DISPLAY)exitWith{};
 
+		// check ALT+TAB 
+		if (_key == KEY_TAB && _alt) exitWith {};
+		
 		switch (_key) do
 		{
 			case (KEY_SPACE):
