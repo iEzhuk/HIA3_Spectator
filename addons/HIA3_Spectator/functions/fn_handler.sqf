@@ -113,7 +113,10 @@ switch (_event) do
 		PR(_alt)	= _arg select 4;
 
 		// check ALT+TAB 
-		if (_key == KEY_TAB && _alt) exitWith {};
+		if (_key == KEY_TAB && _alt) exitWith {
+			HIA3_Spectator_Keys = HIA3_Spectator_Keys - [KEY_TAB];
+			HIA3_Spectator_Keys = HIA3_Spectator_Keys - [KEY_LMENU];
+		};
 
 		if (_key != KEY_ESCAPE) then {
 			if !(_key in HIA3_Spectator_Keys) then {
@@ -151,7 +154,10 @@ switch (_event) do
 		if!(isNull findDisplay IDD_SPECTATOR_MAP_DISPLAY)exitWith{};
 
 		// check ALT+TAB 
-		if (_key == KEY_TAB && _alt) exitWith {};
+		if (_key == KEY_TAB && _alt) exitWith {
+			HIA3_Spectator_Keys = HIA3_Spectator_Keys - [KEY_TAB];
+			HIA3_Spectator_Keys = HIA3_Spectator_Keys - [KEY_LMENU];
+		};
 		
 		switch (_key) do
 		{
