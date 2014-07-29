@@ -31,7 +31,4 @@ PR(_newPos) = [
 	(_pos select 2) + _dZ
 ];
 
-// check terrein height
-_newPos set [2,(_newPos select 2) max (getterrainheightasl _newPos)];
-
 _newPos
