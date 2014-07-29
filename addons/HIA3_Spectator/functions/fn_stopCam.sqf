@@ -5,7 +5,7 @@
 		Ezhuk
 
 	Description:
-		Immediately stops the camera
+		Immediately stops the free camera
 
 	Parameters:
 		Nothing
@@ -14,6 +14,7 @@
 		Nothing
 */
 #include "defines.sqf"
+		
 if(HIA3_Spectator_State == SPECT_VIEWSTATE_FREE) then {
 	if({_x in [KEY_W,KEY_A,KEY_S,KEY_D,KEY_Q,KEY_Z]} count HIA3_Spectator_Keys == 0) then {
 		private ["_pos"];

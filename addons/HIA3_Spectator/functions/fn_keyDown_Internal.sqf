@@ -15,7 +15,6 @@
 */
 #include "defines.sqf"
 
-//Func_Spect_Disp_KeyDown_Iternal = {
 PR(_key)	= _this select 1;
 PR(_shift)	= _this select 2;
 PR(_ctrl)	= _this select 3;

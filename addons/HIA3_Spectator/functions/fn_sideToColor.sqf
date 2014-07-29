@@ -13,9 +13,9 @@
  	Returns:
 		STRING: Color
 */
-#include "defines.sqf"
-		
+
 private ["_side","_color"];
+
 _side = _this select 0;
 _color = "ColorBlack";
 
