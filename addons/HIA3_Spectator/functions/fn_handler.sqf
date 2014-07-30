@@ -114,8 +114,7 @@ switch (_event) do
 
 		// check ALT+TAB 
 		if (_key == KEY_TAB && _alt) exitWith {
-			HIA3_Spectator_Keys = HIA3_Spectator_Keys - [KEY_TAB];
-			HIA3_Spectator_Keys = HIA3_Spectator_Keys - [KEY_LMENU];
+			HIA3_Spectator_Keys = [];
 		};
 
 		if (_key != KEY_ESCAPE) then {
@@ -155,8 +154,7 @@ switch (_event) do
 
 		// check ALT+TAB 
 		if (_key == KEY_TAB && _alt) exitWith {
-			HIA3_Spectator_Keys = HIA3_Spectator_Keys - [KEY_TAB];
-			HIA3_Spectator_Keys = HIA3_Spectator_Keys - [KEY_LMENU];
+			HIA3_Spectator_Keys = [];
 		};
 		
 		switch (_key) do
