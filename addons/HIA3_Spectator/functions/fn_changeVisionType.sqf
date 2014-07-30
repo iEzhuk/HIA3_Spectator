@@ -30,6 +30,6 @@ switch (HIA3_Spectator_CamVision) do {
 	};
 	case 3: {
 		camusenvg false;
-		true SetCamUseTi 1;
+		true SetCamUseTi 4;
 	};
 };
