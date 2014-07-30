@@ -15,10 +15,21 @@
 */
 #include "defines.sqf"
 
-if(HIA3_Spectator_Hide3D) exitWith {};
-
 PR(_vehs) = [];
 PR(_unit) = HIA3_Spectator_ViewUnit;
+
+if !(isNil {_unit}) then {
+	//=======================================//
+	//            Camera control             //
+	//=======================================//
+	if(HIA3_Spectator_State == SPECT_VIEWSTATE_INTERNAL) then 
+	{
+		_unit switchCamera "INTERNAL";
+		vehicle _unit switchCamera HIA3_Spectator_CameraMode;
+	};
+};
+
+if(HIA3_Spectator_Hide3D) exitWith {};
 
 if !(isNil {_unit}) then {
 	PR(_pos) = visiblePosition vehicle _unit;
@@ -34,16 +45,6 @@ if !(isNil {_unit}) then {
 		// target icon 
 		drawIcon3D ["\A3\ui_f\data\map\groupicons\selector_selectedFriendly_ca.paa", _color, _pos, 1, 1, 2, "", 2, 0.05, "PuristaMedium"];
 	};
-
-	//=======================================//
-	//            Camera control             //
-	//=======================================//
-	if(HIA3_Spectator_State == SPECT_VIEWSTATE_INTERNAL) then 
-	{
-		_unit switchCamera "INTERNAL";
-		vehicle _unit switchCamera HIA3_Spectator_CameraMode;
-	};
-
 };
 
 switch (HIA3_Spectator_TagType) do
