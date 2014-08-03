@@ -155,8 +155,8 @@
 				</Russian>
 			</Key>
 			<Key ID="STR_HIA3_Minutes_short">
-				<Original>min</Original>
-				<Russian>мин</Russian>
+				<Original>m</Original>
+				<Russian>м</Russian>
 			</Key>	
 		</Container>
 	</Package>
