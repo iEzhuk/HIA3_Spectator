@@ -18,7 +18,10 @@
 private ["_seagull"];
 _seagull = _this select 0;
 
-_seagull setPos [-5000,-5000,5000];
+if !(isNil "_seagull") then {
+	_seagull setPos [-5000,-5000,5000];
+};
 
 waituntil {missionnamespace getvariable ["BIS_fnc_feedback_allowDeathScreen",true]};
 BIS_fnc_feedback_allowPP = false;
+

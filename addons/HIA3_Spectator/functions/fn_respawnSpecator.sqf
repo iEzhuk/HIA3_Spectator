@@ -15,10 +15,8 @@
 		Nothing
 */
 private ["_seagull"];
-_seagull = _this select 0;
 
-_seagull setPos [-5000,-5000,5000];
-BIS_fnc_feedback_allowPP = false;
+_seagull = _this select 0;
 
 [] spawn {
 	titleCut ["", "BLACK OUT", 4];
@@ -36,3 +34,9 @@ BIS_fnc_feedback_allowPP = false;
 	// Lauch spectator 
 	cutRsc ["RscHIA3Specator","PLAIN"];
 };
+
+if !(isNil "_seagull") then {
+	_seagull setPos [-5000,-5000,5000];
+};
+
+
