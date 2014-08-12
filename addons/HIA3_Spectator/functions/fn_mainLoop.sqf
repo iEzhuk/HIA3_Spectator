@@ -30,7 +30,7 @@ while{HIA3_Spectator_Enable} do
 					[daytime,"HH:MM"] call bis_fnc_TimeToString
 				}else{
 					if(typeName Global_HIA3_Specator_Time != "STRING") then {
-						format ["%1 %2",Global_HIA3_Specator_Time,localize "STR_HIA3_Minutes_short"];
+						format ["%1%2",Global_HIA3_Specator_Time,localize "STR_HIA3_Minutes_short"];
 					} else {
 						Global_HIA3_Specator_Time
 					};
