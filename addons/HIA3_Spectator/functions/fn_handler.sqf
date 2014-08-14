@@ -64,11 +64,11 @@ switch (_event) do
 
 		[] spawn HIA3_spectator_fnc_mainLoop;
 
-		PR(_handKeyDown) = (findDisplay 46) displayAddEventHandler ["KeyDown", "['disp_keyDown',_this] call HIA3_spectator_fnc_handler"];
-		PR(_handKeyUp) = (findDisplay 46) displayAddEventHandler ["KeyUp", "['disp_keyUp',_this] call HIA3_spectator_fnc_handler"];
-		PR(_handMouseMoving) = (findDisplay 46) displayAddEventHandler ["MouseMoving", "['disp_mouseMovie',_this] call HIA3_spectator_fnc_handler"];
-		PR(_handMouseButtonDown) = (findDisplay 46) displayAddEventHandler ["MouseButtonDown", "['disp_mouseButtonDown',_this] call HIA3_spectator_fnc_handler"];
-		PR(_handMouseButtonUp) = (findDisplay 46) displayAddEventHandler ["MouseButtonUp", "['disp_mouseButtonUp',_this] call HIA3_spectator_fnc_handler"];
+		HIA3_Spectator_handKeyDown = (findDisplay 46) displayAddEventHandler ["KeyDown", "['disp_keyDown',_this] call HIA3_spectator_fnc_handler"];
+		HIA3_Spectator_handKeyUp = (findDisplay 46) displayAddEventHandler ["KeyUp", "['disp_keyUp',_this] call HIA3_spectator_fnc_handler"];
+		HIA3_Spectator_handMouseMoving = (findDisplay 46) displayAddEventHandler ["MouseMoving", "['disp_mouseMovie',_this] call HIA3_spectator_fnc_handler"];
+		HIA3_Spectator_handMouseButtonDown = (findDisplay 46) displayAddEventHandler ["MouseButtonDown", "['disp_mouseButtonDown',_this] call HIA3_spectator_fnc_handler"];
+		HIA3_Spectator_handMouseButtonUp = (findDisplay 46) displayAddEventHandler ["MouseButtonUp", "['disp_mouseButtonUp',_this] call HIA3_spectator_fnc_handler"];
 
 		uiNamespace setVariable ['HIA3_SpectatorEvents', [_handKeyDown,_handKeyUp,_handMouseMoving,_handMouseButtonDown,_handMouseButtonUp]];
 	};
@@ -77,7 +77,11 @@ switch (_event) do
 		camDestroy Local_Editor_Camera;
 
 		removeMissionEventHandler ["Draw3D",HIA3_Spectator_DrawEvent];
-		{(findDisplay 46) displayRemoveEventHandler _x} foreach uiNamespace getVariable ["HIA3_SpectatorEvents",[]];
+		(findDisplay 46) displayRemoveEventHandler ["KeyDown"		 , HIA3_Spectator_handKeyDown];
+		(findDisplay 46) displayRemoveEventHandler ["KeyUp"			 , HIA3_Spectator_handKeyUp];
+		(findDisplay 46) displayRemoveEventHandler ["MouseMoving"	 , HIA3_Spectator_handMouseMoving];
+		(findDisplay 46) displayRemoveEventHandler ["MouseButtonDown", HIA3_Spectator_handMouseButtonDown];
+		(findDisplay 46) displayRemoveEventHandler ["MouseButtonUp"	 , HIA3_Spectator_handMouseButtonUp];
 
 		HIA3_Spectator_Fov = nil;
 		HIA3_Spectator_EachFrame_Units = nil;
