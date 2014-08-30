@@ -32,7 +32,7 @@ _seagull = _this select 0;
 	"chromAberration" ppEffectEnable false; 
 
 	// Lauch spectator 
-	cutRsc ["RscHIA3Specator","PLAIN"];
+	("HIA3_SPECTATOR" call BIS_fnc_rscLayer) cutRsc ["RscHIA3Specator","PLAIN"];
 };
 
 if !(isNil "_seagull") then {
