@@ -20,11 +20,12 @@ PR(_shift)	= _this select 2;
 PR(_ctrl)	= _this select 3;
 PR(_alt)	= _this select 4;
 
-PR(_dist) = 6; PR(_distZ) = 4;
+PR(_dist) = 7; PR(_distZ) = 4;
 
-if(_ctrl) 			then {_dist = 1;   _distZ = 1;};
-if(_shift) 			then {_dist = 101; _distZ = 57;};
-if(_shift && _alt)  then {_dist = 577; _distZ = 173;};
+if(_ctrl) 		   then {_dist =   1; _distZ =   1;};
+if(_alt)  		   then {_dist =  23; _distZ =  17;};
+if(_shift) 		   then {_dist =  83; _distZ =  47;};
+if(_shift && _alt) then {_dist = 577; _distZ = 173;};
 
 PR(_curDir) = direction HIA3_Spectator_Camera;
 PR(_newPos) = getPosAsl HIA3_Spectator_Camera;
