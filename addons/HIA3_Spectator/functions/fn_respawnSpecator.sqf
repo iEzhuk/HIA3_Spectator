@@ -20,8 +20,8 @@ _seagull = _this select 0;
 
 [] spawn {
 	titleCut ["", "BLACK OUT", 4];
-
 	sleep 8;
+	titleCut ["", "BLACK IN", 0];
 
 	BIS_fnc_feedback_allowPP = false;
 

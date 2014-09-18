@@ -26,16 +26,34 @@ while{HIA3_Spectator_Enable} do
 {
 	call HIA3_spectator_fnc_updateTagList; 
 
-	PR(_text) =	if(isNil "Global_HIA3_Specator_Time") then {
-					[daytime,"HH:MM"] call bis_fnc_TimeToString
-				}else{
-					if(typeName Global_HIA3_Specator_Time != "STRING") then {
-						format ["%1%2",Global_HIA3_Specator_Time,localize "STR_HIA3_Minutes_short"];
-					} else {
-						Global_HIA3_Specator_Time
-					};
-					
-				};
+	PR(_text) = "";
+	switch (true) do {
+		case (not isNil "Global_HIA3_Specator_Time") : {
+			_text = format ["%1 %2", Global_HIA3_Specator_Time, localize "STR_HIA3_Minutes_short"];
+		};
+		case (not isNil "WMT_Local_LeftTime") : {
+			PR(_leftTime) = (WMT_Local_LeftTime select 1);
+
+			if(WMT_Local_LeftTime select 2) then {
+				_leftTime = _leftTime - (diag_tickTime - (WMT_Local_LeftTime select 0));
+			};
+
+			_leftTime = _leftTime max 0;
+			PR(_min) = floor(_leftTime/60);
+			PR(_sec) = floor(_leftTime%60);
+	
+			if(_sec<10) then {
+				_text = format ["%1:0%2",floor(_leftTime/60), floor(_leftTime%60)];
+			} else {
+				_text = format ["%1:%2",floor(_leftTime/60), floor(_leftTime%60)];
+			};
+		};
+
+
+		default {
+			_text = [daytime,"HH:MM"] call bis_fnc_TimeToString;
+		};
+	};
 
 	_ctrlTime ctrlSetText _text;
 	_ctrlTime ctrlCommit 0;

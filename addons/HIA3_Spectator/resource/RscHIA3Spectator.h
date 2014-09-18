@@ -44,7 +44,7 @@ class RscTitles
 				style = ST_CENTER;
 				x 	= 0.25 * safezoneW + safezoneX;
 				y 	= 0.97 * safezoneH + safezoneY;
-				w 	= 0.05 * safezoneW;
+				w 	= 0.06 * safezoneW;
 				h 	= 0.03 * safezoneH;
 				colorBackground[] = {0,0,0,1};
 			};
@@ -65,7 +65,7 @@ class RscTitles
 			{
 				idc = IDD_SPECTATOR_COUNT0;
 				style = ST_CENTER;
-				x 	= 0.30 * safezoneW + safezoneX;
+				x 	= 0.31 * safezoneW + safezoneX;
 				y 	= 0.97 * safezoneH + safezoneY;
 				w 	= 0.03 * safezoneW;
 				h 	= 0.03 * safezoneH;
@@ -75,7 +75,7 @@ class RscTitles
 			{
 				idc = IDD_SPECTATOR_COUNT1;
 				style = ST_CENTER;
-				x 	= 0.33 * safezoneW + safezoneX;
+				x 	= 0.34 * safezoneW + safezoneX;
 				y 	= 0.97 * safezoneH + safezoneY;
 				w 	= 0.03 * safezoneW;
 				h 	= 0.03 * safezoneH;
@@ -85,7 +85,7 @@ class RscTitles
 			{
 				idc = IDD_SPECTATOR_COUNT2;
 				style = ST_CENTER;
-				x 	= 0.36 * safezoneW + safezoneX;
+				x 	= 0.37 * safezoneW + safezoneX;
 				y 	= 0.97 * safezoneH + safezoneY;
 				w 	= 0.03 * safezoneW;
 				h 	= 0.03 * safezoneH;
@@ -95,7 +95,7 @@ class RscTitles
 			{
 				idc = IDD_SPECTATOR_COUNT3;
 				style = ST_CENTER;
-				x 	= 0.39 * safezoneW + safezoneX;
+				x 	= 0.40 * safezoneW + safezoneX;
 				y 	= 0.97 * safezoneH + safezoneY;
 				w 	= 0.03 * safezoneW;
 				h 	= 0.03 * safezoneH;
