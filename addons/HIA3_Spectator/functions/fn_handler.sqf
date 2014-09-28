@@ -71,6 +71,8 @@ switch (_event) do
 		HIA3_Spectator_handMouseButtonUp = (findDisplay 46) displayAddEventHandler ["MouseButtonUp", "['disp_mouseButtonUp',_this] call HIA3_spectator_fnc_handler"];
 
 		uiNamespace setVariable ['HIA3_SpectatorEvents', [_handKeyDown,_handKeyUp,_handMouseMoving,_handMouseButtonDown,_handMouseButtonUp]];
+
+		[] spawn HIA3_spectator_fnc_mapLoop;
 	};
 	case "close":{
 		HIA3_Spectator_Keys = [];

@@ -14,10 +14,12 @@
 		Nothing
 */
 
-HIA3_Spectator_ObjMarkers = [];
-{
-	if(["Spect_",_x] call BIS_fnc_inString) then 
+if(count HIA3_Spectator_ObjMarkers > 0) then {
+	HIA3_Spectator_ObjMarkers = [];
 	{
-		deleteMarkerLocal _x;
-	};
-} forEach allMapMarkers;
+		if(["Spect_",_x] call BIS_fnc_inString) then 
+		{
+			deleteMarkerLocal _x;
+		};
+	} forEach allMapMarkers;
+}

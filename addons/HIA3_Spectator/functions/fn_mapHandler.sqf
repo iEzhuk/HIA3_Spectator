@@ -34,8 +34,6 @@ switch (_event) do
 		uiNamespace setVariable ['HIA3_SpectatorMapEventDraw', [_eventDraw]];
 
 		onMapSingleClick "['map_singleClick',[_pos]] call HIA3_spectator_fnc_mapHandler";
-
-		[] spawn HIA3_spectator_fnc_mapLoop;
 	};
 	case "close":{
 		PR(_dialog) = uiNamespace getVariable ['HIA3_DisaplaySpectator_Map', 0];
