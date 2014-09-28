@@ -13,9 +13,9 @@ class CfgPatches
 		requiredAddons[] = {};
 		author[] = {"Ezhuk"};
 		authorUrl = "http://www.hia3.com";
-		version = 0.9.0;
-		versionStr = "0.9.0";
-		versionAr[] = {0,9,0};	
+		version = 0.9.1;
+		versionStr = "0.9.1";
+		versionAr[] = {0,9,1};	
 	};
 };
 
