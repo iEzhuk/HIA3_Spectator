@@ -1,5 +1,6 @@
 #include "functions\defines.sqf"
 #include "resource\RscHIA3Spectator.h"
+#include "resource\RscHIA3SpectatorGUIext.h"
 #include "resource\CfgFunctions.h"
 #include "resource\CfgModuls.h"
 

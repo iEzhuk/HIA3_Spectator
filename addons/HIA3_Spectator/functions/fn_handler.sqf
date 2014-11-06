@@ -42,7 +42,7 @@ switch (_event) do
 		HIA3_Spectator_MapShowName_NeedUpdate = false;
 		HIA3_Spectator_CameraMode = "INTERNAL";
 		HIA3_Spectator_ViewUnit = player;
-		HIA3_Spectator_UnitList = allUnits;
+		HIA3_Spectator_UnitList = [];
 		HIA3_Spectator_State = SPECT_VIEWSTATE_INTERNAL; 
 		HIA3_Spectator_Camera_AngV = 0;
 		HIA3_Spectator_Keys = [];
@@ -129,19 +129,29 @@ switch (_event) do
 			};
 		};
 
-		if (isNull findDisplay IDD_SPECTATOR_MAP_DISPLAY) then {
-			switch (HIA3_Spectator_State) do
-			{
-				case SPECT_VIEWSTATE_INTERNAL :
-				{
-					_arg call HIA3_spectator_fnc_keyDown_Internal;
+		switch (_key) do {
+			case KEY_TAB : {
+				if (!dialog) then {
+					createDialog "RscHIA3SpectatorGUIext";
 				};
-				case SPECT_VIEWSTATE_FREE :
-				{
-					_arg call HIA3_spectator_fnc_keyDown_Free;
+			};
+			default {
+				if (isNull findDisplay IDD_SPECTATOR_MAP_DISPLAY) then {
+					switch (HIA3_Spectator_State) do
+					{
+						case SPECT_VIEWSTATE_INTERNAL :
+						{
+							_arg call HIA3_spectator_fnc_keyDown_Internal;
+						};
+						case SPECT_VIEWSTATE_FREE :
+						{
+							_arg call HIA3_spectator_fnc_keyDown_Free;
+						};
+					};
 				};
 			};
 		};
+
 
 		if (_key in actionKeys "ShowMap") then {
 			_return = true;

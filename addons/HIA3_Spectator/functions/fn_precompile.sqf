@@ -13,6 +13,7 @@ HIA3_spectator_fnc_currentDir		= compileFinal preprocessFile ("HIA3_Spectator\fu
 HIA3_spectator_fnc_currentPosition	= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_currentPosition.sqf");
 HIA3_spectator_fnc_draw3D			= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_draw3D.sqf");
 HIA3_spectator_fnc_handler			= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_handler.sqf");
+HIA3_spectator_fnc_handlerSpectGUI	= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_handlerSpectGUI.sqf");
 HIA3_spectator_fnc_initModule		= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_initModule.sqf");
 HIA3_spectator_fnc_initNewCam		= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_initNewCam.sqf");
 HIA3_spectator_fnc_keyDown_Free		= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_keyDown_Free.sqf");
@@ -40,7 +41,7 @@ if(!isDedicated) then {
 	[] spawn {
 		waitUntil{!isNil {player}};
 
-		if(isNil "HIA3_Spectator_ShowEnemy") then {
+		if(isNil "HIA3_Spectator_PlayerListGUIExt") then {
 			HIA3_Spectator_ShowEnemy = true;
 		};
 		if(isNil "HIA3_Spectator_Tag") then {
