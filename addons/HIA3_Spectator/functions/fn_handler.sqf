@@ -33,7 +33,7 @@ switch (_event) do
 		HIA3_Spectator_EachFrame_Vehs = [];
 		HIA3_Spectator_ObjMarkers = [];
 		HIA3_Spectator_DrawEvent = -1;
-		HIA3_Spectator_TagType	= 0;
+		HIA3_Spectator_TagType	= HIA3_Spectator_Tag min 2 max 0;
 		HIA3_Spectator_CamVision = 0;
 		HIA3_Spectator_MapVision = 0;
 		HIA3_Spectator_ShowCrewVeh = true;
