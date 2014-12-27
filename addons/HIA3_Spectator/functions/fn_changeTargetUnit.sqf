@@ -34,7 +34,7 @@ switch (typeName (_this select 0)) do
 
 			PR(_dialog) = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
 			PR(_ctrlName) = _dialog displayCtrl IDD_SPECTATOR_PLAYER_NAME;
-			PR(_textName) = name HIA3_Spectator_ViewUnit;
+			PR(_textName) = NAME(HIA3_Spectator_ViewUnit);
 			PR(_color) = [side HIA3_Spectator_ViewUnit] call BIS_fnc_sideColor;
 
 			_ctrlName ctrlSetText _textName;
@@ -58,7 +58,7 @@ switch (typeName (_this select 0)) do
 
 			PR(_dialog) = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
 			PR(_ctrlName) = _dialog displayCtrl IDD_SPECTATOR_PLAYER_NAME;
-			PR(_textName) = name HIA3_Spectator_ViewUnit;
+			PR(_textName) = NAME(HIA3_Spectator_ViewUnit);
 			PR(_color) = [side HIA3_Spectator_ViewUnit] call BIS_fnc_sideColor;
 
 			_ctrlName ctrlSetText _textName;

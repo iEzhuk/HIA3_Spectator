@@ -14,7 +14,7 @@ class RscHIA3SpectatorGUIext {
 	idd = IDD_SPECT_GUI;
 	onLoad = "['init',_this] call HIA3_spectator_fnc_HandlerSpectGUI";
 	onUnload = "['close',_this] call HIA3_spectator_fnc_HandlerSpectGUI";
-
+	onKeyDown = "['disp_keyDown',_this] call HIA3_spectator_fnc_HandlerSpectGUI";
 	// class controlsBackground {
 	// 	class Background1: RscText {
 	// 		colorBackground[] = {0, 0, 0, 0.75};
@@ -71,8 +71,8 @@ class RscHIA3SpectatorGUIext {
 			w = 0.16 * safeZoneW;
 			h = 0.97 * safeZoneH;
 
-			size 	= 0.03;
-			sizeEx 	= 0.03;
+			size 	= 0.025;
+			sizeEx 	= 0.025;
 			canDrag = 0;
 			
 			onLBSelChanged = "['playerList_lb_changed',_this] call HIA3_spectator_fnc_handlerSpectGUI;";

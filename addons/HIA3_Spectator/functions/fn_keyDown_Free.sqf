@@ -60,6 +60,32 @@ switch (_key) do
 		HIA3_Spectator_Camera campreparefov HIA3_Spectator_Fov;
 		HIA3_Spectator_Camera camcommitprepared 0;
 	};
+	case KEY_X : 
+	{
+		if(count HIA3_Spectator_UnitList > 0) then {
+			
+			PR(_curPos) = call HIA3_spectator_fnc_currentPosition;
+			PR(_nearestUnit) = nullObj;
+			PR(_dist) = 10000;
+
+			for "_i" from 0 to ((count HIA3_Spectator_UnitList)-1) do {
+				PR(_unit) = HIA3_Spectator_UnitList select _i;
+				PR(_unitPos) = getPos _unit;
+				PR(_newDist) = [_curPos select 0, _curPos select 1, 0] distance [_unitPos select 0, _unitPos select 1, 0];
+
+				if (_newDist < _dist) then {
+					_dist = _newDist;
+					_nearestUnit = _unit;
+				};	
+			};
+
+			if (_dist < 500) then {
+				[_nearestUnit] call HIA3_spectator_fnc_changeTargetUnit;
+				SPECT_VIEWSTATE_INTERNAL call HIA3_spectator_fnc_initNewCam;
+			};
+		};
+	};
 };
 
 _this call HIA3_spectator_fnc_moveCamera;
+

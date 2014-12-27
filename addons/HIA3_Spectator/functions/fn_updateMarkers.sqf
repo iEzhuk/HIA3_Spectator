@@ -42,7 +42,8 @@ for "_i" from 0 to (count _unitList - 1) do {
 				if(_needUpdate) then {
 					PR(_text) = if(_veh==_obj)then{""}else{format ["(%1) ",count (crew _veh)]};
 					if(_showName)then{
-						_text = _text + name ((crew _veh) select 0);
+						PR(_unit) = (crew _veh) select 0;
+						_text = format ["%1%2",_text,NAME(_unit)];
 					}else{
 						if(_obj!=_veh)then{
 							_text = _text + getText (configFile >> "CfgVehicles" >> (typeOf (_veh)) >> "displayName")
@@ -63,7 +64,8 @@ for "_i" from 0 to (count _unitList - 1) do {
 				PR(_Cmarker) = createMarkerLocal[_marker, _pos];
 
 				if(_showName)then{
-					_text = _text + name ((crew _veh) select 0);
+					PR(_unit) = (crew _veh) select 0;
+					_text = format ["%1%2",_text,NAME(_unit)];
 				}else{
 					if(_obj!=_veh)then{
 						_text = _text + getText (configFile >> "CfgVehicles" >> (typeOf (_veh)) >> "displayName")

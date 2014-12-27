@@ -25,13 +25,14 @@ _seagull = _this select 0;
 
 	BIS_fnc_feedback_allowPP = false;
 
+	// Disable all PP effect
 	"radialBlur" ppEffectEnable false; 
 	"DynamicBlur" ppEffectEnable false; 
 	"dynamicBlur" ppEffectEnable false; 
 	"filmGrain" ppEffectEnable false; 
 	"chromAberration" ppEffectEnable false; 
 
-	// Lauch spectator 
+	// Launch spectator 
 	("HIA3_SPECTATOR" call BIS_fnc_rscLayer) cutRsc ["RscHIA3Specator","PLAIN"];
 };
 

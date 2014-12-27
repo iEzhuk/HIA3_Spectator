@@ -11,12 +11,12 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 1.0;
-		requiredAddons[] = {};
+		requiredAddons[] = {"A3_Functions_F"};
 		author[] = {"Ezhuk"};
 		authorUrl = "http://www.hia3.com";
-		version = 0.9.1;
-		versionStr = "0.9.1";
-		versionAr[] = {0,9,1};	
+		version = 1.0.0;
+		versionStr = "1.0.0";
+		versionAr[] = {1,0,0};	
 	};
 };
 

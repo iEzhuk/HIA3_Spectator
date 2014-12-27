@@ -80,18 +80,18 @@ for "_i" from 0 to (count _newList - 1) do {
 
 			if(_unit == _veh) then 
 			{
-				_tmp = [_unit,name _unit,_color];
+				_tmp = [_unit, NAME(_unit), _color];
 
-				_newUnits set [_indU,_tmp];
+				_newUnits set [_indU, _tmp];
 				_indU = _indU + 1;
 			}else{
 				if(!(_veh in _vehs)) then {
 					PR(_crew) = crew _veh;
-					_text = format ["(%2) %1",name (_crew select 0),count _crew];
-					_tmp = [_veh,_text,_color];
+					_text = format ["(%2) %1", NAME(_crew select 0), count _crew];
+					_tmp = [_veh, _text, _color];
 
-					_vehs set [_indV,_veh];
-					_newVehs set [_indV,_tmp];
+					_vehs set [_indV, _veh];
+					_newVehs set [_indV, _tmp];
 					_indV = _indV + 1;
 				};
 			};
@@ -117,10 +117,10 @@ for "_i" from 0 to (count _uavs - 1) do {
 		if(count _control > 0) then {
 			PR(_unit) = _control select 0;
 			if(alive _unit) then {
-				_text = name _unit;
+				_text = NAME(_unit);
 			};
 		};
-		_newVehs set [_indV,[_uav,_text,_color]];
+		_newVehs set [_indV, [_uav, _text, _color]];
 		_indV = _indV + 1;
 	};
 };

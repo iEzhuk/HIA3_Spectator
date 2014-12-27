@@ -28,9 +28,11 @@ while{HIA3_Spectator_Enable} do
 
 	PR(_text) = "";
 	switch (true) do {
+		// Custom 
 		case (not isNil "Global_HIA3_Specator_Time") : {
 			_text = format ["%1 %2", Global_HIA3_Specator_Time, localize "STR_HIA3_Minutes_short"];
 		};
+		// WMT time module 
 		case (not isNil "WMT_Local_LeftTime") : {
 			PR(_leftTime) = (WMT_Local_LeftTime select 1);
 
@@ -48,8 +50,7 @@ while{HIA3_Spectator_Enable} do
 				_text = format ["%1:%2",floor(_leftTime/60), floor(_leftTime%60)];
 			};
 		};
-
-
+		// Show current time 
 		default {
 			_text = [daytime,"HH:MM"] call bis_fnc_TimeToString;
 		};
@@ -110,7 +111,7 @@ while{HIA3_Spectator_Enable} do
 			if(_x == commander _veh) then {
 				_icon = "getincommander_ca.paa";
 			};
-			_text = _text + format ["<t size='1.1'> <img image='\A3\ui_f\data\igui\cfg\actions\%1'></t><t size='1.5'> %2</t><br/>",_icon,name _x];
+			_text = _text + format ["<t size='1.1'> <img image='\A3\ui_f\data\igui\cfg\actions\%1'></t><t size='1.5'> %2</t><br/>",_icon, NAME(_x)];
 
 		} forEach (crew _veh);
 

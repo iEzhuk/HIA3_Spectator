@@ -39,8 +39,7 @@ HIA3_spectator_fnc_updateTagList	= compileFinal preprocessFile ("HIA3_Spectator\
 
 if(!isDedicated) then {
 	[] spawn {
-		waitUntil{!isNil {player}};
-
+		waitUntil{sleep 0.001;!isNil {player}};
 		if(isNil "HIA3_Spectator_PlayerListGUIExt") then {
 			HIA3_Spectator_ShowEnemy = true;
 		};
@@ -57,7 +56,13 @@ if(!isDedicated) then {
 			HIA3_Spectator_SpecialAdmin = true;
 		};
 		if(isNil "HIA3_Spectator_Side") then {
-			HIA3_Spectator_Side = side player;
+			HIA3_Spectator_Side = playerSide;
+		};
+		if ( player getVariable ["PlayerName",""] != name player) then {
+			player setVariable ["PlayerName",name player,true];
+		};
+		if (isNil {player getVariable "PlayerSide"}) then {
+			player setVariable ["PlayerSide",playerSide,true];
 		};
 	};
 };

@@ -30,12 +30,13 @@ switch (_event) do
 		PR(_display) = _arg select 0;
 		uiNamespace setVariable ['HIA3_DisaplaySpectatorGUIext', _display];
 		HIA3_Spectator_PlayerListGUIExt = [];
-
+		HIA3_Spectator_GUIExt_curSide = playerSide;
 		["update_playerlist", [playerSide]] call HIA3_spectator_fnc_handlerSpectGUI;
 	};
 	case "close":{
 		uiNamespace setVariable ['HIA3_DisaplaySpectatorGUIext', nil];
 		HIA3_Spectator_PlayerListGUIExt = nil;
+		HIA3_Spectator_GUIExt_curSide = nil;
 	};
 	case "disp_keyDown":{
 		PR(_key)	= _arg select 1;
@@ -43,43 +44,16 @@ switch (_event) do
 		PR(_ctrl)	= _arg select 3;
 		PR(_alt)	= _arg select 4;
 
-	};
-	case "disp_keyUp" :
-	{
-		PR(_key)	= _arg select 1;
-		PR(_shift)	= _arg select 2;
-		PR(_ctrl)	= _arg select 3;
-		PR(_alt)	= _arg select 4;
-
-	};
-	case "disp_mouseMovie" :
-	{
-		PR(_nH) = _arg select 1;
-		PR(_nV) = _arg select 2;
-
-	};
-	case "disp_mouseButtonUp" :
-	{
-		PR(_button) = _arg select 1;
-		PR(_pX) = _arg select 2;
-		PR(_pY) = _arg select 3;
-		
-	};
-	case "disp_mouseButtonDown" :
-	{
-		PR(_button) = _arg select 1;
-		PR(_pX) = _arg select 2;
-		PR(_pY) = _arg select 3;
-
-	};
-	case "disp_mouseButtonDblClick" :
-	{
-
+		if(_key == KEY_TAB) then {
+			if(dialog) then {
+				closeDialog 0;
+			};
+		};
 	};
 	case "update_playerlist" :
 	{
 		PR(_selectedSide) = _arg select 0;
-
+		HIA3_Spectator_GUIExt_curSide = _selectedSide;
 
 		PR(_display) = uiNamespace getVariable "HIA3_DisaplaySpectatorGUIext";
 		if(isNil "_display") exitWith {
@@ -91,14 +65,9 @@ switch (_event) do
 		{
 			PR(_side) = _x;
 			PR(_count) = {alive _x && side _x == _side} count allUnits;
-			PR(_color) = [_side] call BIS_fnc_sideColor;
-			_color set [3,if(_selectedSide==_side)then{1.0}else{0.5}];
-			systemChat str(_color);
+
 			PR(_ctrl) = _display displayCtrl _ctrlInd;	
 
-			_ctrl ctrlSetForegroundColor _color;
-			_ctrl ctrlSetActiveColor _color;
-			_ctrl ctrlSetBackgroundColor _color;
 			_ctrl ctrlSetText str(_count);
 			_ctrl ctrlCommit 0;
 
@@ -115,11 +84,7 @@ switch (_event) do
 		lbClear _playerlist;
 		{
 			if(side _x == _selectedSide && alive _x) then {
-				if(isPlayer _x) then {
-					_playerlist lbAdd (name _x);
-				} else {
-					_playerlist lbAdd format ["%1 (AI)",name _x];
-				};
+				_playerlist lbAdd (NAME(_x));
 				_playerlist lbSetData [_ind, str(_ind)];
 				HIA3_Spectator_PlayerListGUIExt set [_ind, _x];
 				_ind = _ind + 1;
@@ -146,11 +111,14 @@ switch (_event) do
 
 		PR(_unit) = HIA3_Spectator_PlayerListGUIExt select _ind;
 
-		if(_unit in HIA3_Spectator_UnitList) then {
+		if(_unit in HIA3_Spectator_UnitList && alive _unit) then {
 			[_unit] call HIA3_spectator_fnc_changeTargetUnit;
 		} else {
+			["update_playerlist", [HIA3_Spectator_GUIExt_curSide]] call HIA3_spectator_fnc_handlerSpectGUI;
 			diag_log "HIA3_spectator_fnc_handlerSpectGUI: <playerList_lb_changed> unit is no found";
 		};
+
+
 	};
 };
 _return
