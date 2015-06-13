@@ -109,7 +109,6 @@ switch (_event) do
 					HIA3_Spectator_MapShowDead = !HIA3_Spectator_MapShowDead;
 					HIA3_Spectator_MapShowName_NeedUpdate = true;
 				};
-				systemChat str(HIA3_Spectator_MapShowDead);
 			};
 			case (KEY_M):
 			{
