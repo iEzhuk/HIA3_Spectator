@@ -92,7 +92,7 @@ switch (_event) do
 		};
 	};
 	case "keyUp":{
-		PR(_key)	= _arg select 1;
+		PR(_key) = _arg select 1;
 
 		switch (_key) do
 		{
@@ -102,6 +102,14 @@ switch (_event) do
 					HIA3_Spectator_MapShowName = !HIA3_Spectator_MapShowName;
 					HIA3_Spectator_MapShowName_NeedUpdate = true;
 				};
+			};
+			case (KEY_K): 
+			{
+				if(!HIA3_Spectator_MapShowName_NeedUpdate) then {
+					HIA3_Spectator_MapShowDead = !HIA3_Spectator_MapShowDead;
+					HIA3_Spectator_MapShowName_NeedUpdate = true;
+				};
+				systemChat str(HIA3_Spectator_MapShowDead);
 			};
 			case (KEY_M):
 			{

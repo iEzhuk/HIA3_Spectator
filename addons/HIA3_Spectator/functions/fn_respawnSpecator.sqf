@@ -32,6 +32,9 @@ _seagull = _this select 0;
 	"filmGrain" ppEffectEnable false; 
 	"chromAberration" ppEffectEnable false; 
 
+	// Hide map 
+	forceMap false;
+
 	// Launch spectator 
 	("HIA3_SPECTATOR" call BIS_fnc_rscLayer) cutRsc ["RscHIA3Specator","PLAIN"];
 };

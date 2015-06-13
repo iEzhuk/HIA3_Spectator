@@ -51,12 +51,13 @@ switch (HIA3_Spectator_TagType) do
 {
 	case SPECT_TAG_ICON :
 	{
+
 		for "_i" from 0 to (count HIA3_Spectator_EachFrame_Vehs - 1) do {
 			PR(_vehInfo) = HIA3_Spectator_EachFrame_Vehs select _i;
 			PR(_pos) = visiblePosition (_vehInfo select 0);
 
 			_pos set [2,(_pos select 2) + 4];
-			drawIcon3D ["a3\ui_f\data\map\markers\military\box_CA.paa", (_vehInfo select 2),_pos, 0.9, 0.9, 2,"", 2, 0.0, "PuristaMedium"];
+			drawIcon3D ["a3\ui_f\data\map\markers\military\box_CA.paa", (_vehInfo select 2),_pos, 0.9, 0.9, 2, "", 2, 0.0, "PuristaMedium"];
 		};
 		for "_i" from 0 to (count HIA3_Spectator_EachFrame_Units - 1) do {
 			PR(_unitInfo) = HIA3_Spectator_EachFrame_Units select _i;
@@ -64,7 +65,20 @@ switch (HIA3_Spectator_TagType) do
 			PR(_posEye) = if(!(surfaceIsWater _pos))then{ASLtoATL eyePos (_unitInfo select 0)}else{eyePos (_unitInfo select 0)};
 
 			_pos set [2,(_posEye select 2) + 0.5];
-			drawIcon3D ["a3\ui_f\data\map\VehicleIcons\iconexplosiveat_ca.paa", (_unitInfo select 2),_pos, 0.65, 0.65, 2,"", 2, 0.0, "PuristaMedium"];
+			drawIcon3D ["a3\ui_f\data\map\VehicleIcons\iconexplosiveat_ca.paa", (_unitInfo select 2),_pos, 0.65, 0.65, 2, "", 2, 0.0, "PuristaMedium"];
+		};
+
+		if (HIA3_Spectator_ShowDead) then {
+			for "_i" from 0 to (count HIA3_Spectator_EachFrame_DeadList - 1) do {
+				PR(_unitInfo) = HIA3_Spectator_EachFrame_DeadList select _i;
+				PR(_pos) = visiblePosition (_unitInfo select 0);
+				PR(_posEye) = if(!(surfaceIsWater _pos))then{ASLtoATL eyePos (_unitInfo select 0)}else{eyePos (_unitInfo select 0)};
+
+				_pos set [2,(_posEye select 2) + 0.5];
+				drawIcon3D ["a3\ui_f\data\map\VehicleIcons\iconexplosiveat_ca.paa", (_unitInfo select 2),_pos, 0.65, 0.65, 2, "", 2, 0.0, "PuristaMedium"];
+			};
+		} else {
+			HIA3_Spectator_DeadList = [];
 		};
 	};
 	case SPECT_TAG_NAME :
@@ -74,7 +88,7 @@ switch (HIA3_Spectator_TagType) do
 			PR(_pos) = visiblePosition (_vehInfo select 0);
 
 			_pos set [2,(_pos select 2) + 4];
-			drawIcon3D ["", (_vehInfo select 2),_pos, 0.0, 0.0, 2,(_vehInfo select 1), 2, 0.036, "PuristaMedium"];
+			drawIcon3D ["", (_vehInfo select 2),_pos, 0.0, 0.0, 2, (_vehInfo select 1), 2, 0.036, "PuristaMedium"];
 		};
 		for "_i" from 0 to (count HIA3_Spectator_EachFrame_Units - 1) do {
 			PR(_unitInfo) = HIA3_Spectator_EachFrame_Units select _i;
@@ -82,7 +96,20 @@ switch (HIA3_Spectator_TagType) do
 			PR(_posEye) = if(!(surfaceIsWater _pos))then{ASLtoATL eyePos (_unitInfo select 0)}else{eyePos (_unitInfo select 0)};
 
 			_pos set [2,(_posEye select 2) + 0.5];
-			drawIcon3D ["", (_unitInfo select 2),_pos, 0.0, 0.0, 2,(_unitInfo select 1), 2, 0.036, "PuristaMedium"];
+			drawIcon3D ["", (_unitInfo select 2),_pos, 0.0, 0.0, 2, (_unitInfo select 1), 2, 0.036, "PuristaMedium"];
+		};
+
+		if (HIA3_Spectator_ShowDead) then {
+			for "_i" from 0 to (count HIA3_Spectator_EachFrame_DeadList - 1) do {
+				PR(_unitInfo) = HIA3_Spectator_EachFrame_DeadList select _i;
+				PR(_pos) = visiblePosition (_unitInfo select 0);
+				PR(_posEye) = if(!(surfaceIsWater _pos))then{ASLtoATL eyePos (_unitInfo select 0)}else{eyePos (_unitInfo select 0)};
+
+				_pos set [2,(_posEye select 2) + 0.5];
+				drawIcon3D ["", (_unitInfo select 2),_pos, 0.0, 0.0, 2, (_unitInfo select 1), 2, 0.036, "PuristaMedium"];
+			};
+		} else {
+			HIA3_Spectator_DeadList = [];
 		};
 	};
 };

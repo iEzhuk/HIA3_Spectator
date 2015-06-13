@@ -24,7 +24,6 @@ PR(_unitList) = HIA3_Spectator_UnitList;
 PR(_oldObjMarkers) = HIA3_Spectator_ObjMarkers;
 PR(_toDel) = HIA3_Spectator_ObjMarkers;
 PR(_newObjMarkers) = [];
-PR(_indNOM) = 0;
 PR(_vehs) = [];
 PR(_needUpdate) = HIA3_Spectator_MapShowName_NeedUpdate;
 PR(_showName) = HIA3_Spectator_MapShowName;
@@ -40,10 +39,10 @@ for "_i" from 0 to (count _unitList - 1) do {
 				PR(_type) = if(_obj==_veh)then{"mil_arrow2"}else{"mil_arrow"};
 
 				if(_needUpdate) then {
-					PR(_text) = if(_veh==_obj)then{""}else{format ["(%1) ",count (crew _veh)]};
+					PR(_text) = if(_veh==_obj)then{""}else{format ["(%1)",count (crew _veh)]};
 					if(_showName)then{
 						PR(_unit) = (crew _veh) select 0;
-						_text = format ["%1%2",_text,NAME(_unit)];
+						_text = format ["%1 %2",_text,NAME(_unit)];
 					}else{
 						if(_obj!=_veh)then{
 							_text = _text + getText (configFile >> "CfgVehicles" >> (typeOf (_veh)) >> "displayName")
@@ -57,7 +56,7 @@ for "_i" from 0 to (count _unitList - 1) do {
 				_marker setMarkerTypeLocal _type;
 				_toDel = _toDel - [_veh];
 			}else{
-				PR(_text) = if(_veh==_obj)then{""}else{format ["(%1) ",count (crew _veh)]};				
+				PR(_text) = if(_veh==_obj)then{""}else{format ["(%1)",count (crew _veh)]};				
 				PR(_type) = if(_obj==_veh)then{"mil_arrow2"}else{"mil_arrow"};
 				PR(_size) = if(_obj==_veh)then{[MARKER_SIZE_UNIT,MARKER_SIZE_UNIT]}else{[MARKER_SIZE_VEHICLE,MARKER_SIZE_VEHICLE]};
 				PR(_color) = [side _obj] call HIA3_spectator_fnc_sideToColor;
@@ -65,7 +64,7 @@ for "_i" from 0 to (count _unitList - 1) do {
 
 				if(_showName)then{
 					PR(_unit) = (crew _veh) select 0;
-					_text = format ["%1%2",_text,NAME(_unit)];
+					_text = format ["%1 %2",_text,NAME(_unit)];
 				}else{
 					if(_obj!=_veh)then{
 						_text = _text + getText (configFile >> "CfgVehicles" >> (typeOf (_veh)) >> "displayName")
@@ -80,8 +79,49 @@ for "_i" from 0 to (count _unitList - 1) do {
 				_Cmarker setMarkerSizeLocal _size; 	
 			};
 
-			_newObjMarkers set [_indNOM,_veh];
-			_indNOM = _indNOM + 1;
+			_newObjMarkers pushBack _veh;
+		};
+	};
+};
+
+if (HIA3_Spectator_MapShowDead) then {
+	PR(_deadList) = allDead;
+	for "_i" from 0 to (count _deadList - 1) do {
+		PR(_obj) = _deadList select _i;
+		if(_obj isKindOf "CAmanBase") then {
+			PR(_pos) = getPos _obj;
+			PR(_marker) = format["Spect_%1",_obj];
+
+			if(!(_obj in _newObjMarkers)) then {
+				if(_obj in _oldObjMarkers) then {
+					if(_needUpdate) then {
+						PR(_text) = "";
+						if(_showName)then{
+							_text = _obj getVariable ["PlayerName", "[AI]"];
+						};
+						_marker setMarkerTextLocal _text;
+					};
+
+					_marker setMarkerDirLocal getDir _obj;
+					_marker setMarkerPosLocal _pos;
+					_toDel = _toDel - [_obj];
+				} else {
+					PR(_text) = "";
+					PR(_Cmarker) = createMarkerLocal[_marker, _pos];
+
+					if(_showName)then{
+						_text = _obj getVariable ["PlayerName", "[AI]"];
+					};		
+
+					_Cmarker setMarkerTextLocal _text;
+					_Cmarker setMarkerShapeLocal "ICON";
+					_Cmarker setMarkerTypeLocal  "mil_arrow2";
+					_Cmarker setMarkerColorLocal "ColorBlack";
+					_Cmarker setMarkerDirLocal getDir _obj;
+					_Cmarker setMarkerSizeLocal [MARKER_SIZE_UNIT,MARKER_SIZE_UNIT]; 	
+				};
+			};
+			_newObjMarkers pushBack _obj;
 		};
 	};
 };
@@ -98,3 +138,5 @@ if(isNil "HIA3_Spectator_MapShowName_NeedUpdate") exitWith {};
 if(_needUpdate && HIA3_Spectator_MapShowName_NeedUpdate)then{
 	HIA3_Spectator_MapShowName_NeedUpdate = false;
 };
+
+

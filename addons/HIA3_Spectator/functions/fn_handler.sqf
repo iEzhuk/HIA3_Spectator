@@ -49,6 +49,9 @@ switch (_event) do
 		HIA3_Spectator_Buttons = [];
 		HIA3_Spectator_HideControls = false;
 		HIA3_Spectator_Hide3D = false;
+		HIA3_Spectator_ShowDead = false; 
+		HIA3_Spectator_MapShowDead = false; 
+		HIA3_Spectator_EachFrame_DeadList = [];
 
 		PR(_display) = _arg select 0;
 		uiNamespace setVariable ['HIA3_DisaplaySpectator', _display];
@@ -109,6 +112,9 @@ switch (_event) do
 		HIA3_Spectator_Buttons = nil;
 		HIA3_Spectator_HideControls = nil;
 		HIA3_Spectator_Hide3D = nil;
+		HIA3_Spectator_ShowDead = nil; 
+		HIA3_Spectator_MapShowDead = nil;
+		HIA3_Spectator_EachFrame_DeadList = nil;
 
 		HIA3_Spectator_Enable = false;
 	};
@@ -261,6 +267,14 @@ switch (_event) do
 					_ctrlHelp ctrlShow false;
 				} else {
 					_ctrlHelp ctrlShow true;
+				};
+			};
+			case (KEY_K): 
+			{
+				if(HIA3_Spectator_ShowDead) then {
+					HIA3_Spectator_ShowDead =  false;
+				} else {
+					HIA3_Spectator_ShowDead =  true;
 				};
 			};
 		};

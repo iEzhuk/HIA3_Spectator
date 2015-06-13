@@ -35,7 +35,6 @@ class CfgRespawnTemplates
 
 class CfgFactionClasses
 {
-
 	class HIA3
 	{
 		displayName = "HIA3";

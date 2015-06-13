@@ -17,7 +17,7 @@
 if(count HIA3_Spectator_ObjMarkers > 0) then {
 	HIA3_Spectator_ObjMarkers = [];
 	{
-		if(["Spect_",_x] call BIS_fnc_inString) then 
+		if(_x select [0,6] == "Spect_") then 
 		{
 			deleteMarkerLocal _x;
 		};
