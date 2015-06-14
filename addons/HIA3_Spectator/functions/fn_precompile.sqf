@@ -18,6 +18,7 @@ HIA3_spectator_fnc_initModule		= compileFinal preprocessFile ("HIA3_Spectator\fu
 HIA3_spectator_fnc_initNewCam		= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_initNewCam.sqf");
 HIA3_spectator_fnc_keyDown_Free		= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_keyDown_Free.sqf");
 HIA3_spectator_fnc_keyDown_Internal	= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_keyDown_Internal.sqf");
+HIA3_spectator_fnc_keyDown_Attach	= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_keyDown_Attach.sqf");
 HIA3_spectator_fnc_mainLoop			= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_mainLoop.sqf");
 HIA3_spectator_fnc_mapDraw			= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_mapDraw.sqf");
 HIA3_spectator_fnc_mapHandler		= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_mapHandler.sqf");

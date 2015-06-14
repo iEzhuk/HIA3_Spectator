@@ -53,6 +53,7 @@ switch (_event) do
 		HIA3_Spectator_MapShowDead = false; 
 		HIA3_Spectator_EachFrame_DeadList = [];
 		HIA3_Spectator_AttachCam_Angle = 0;
+		HIA3_Spectator_LastFrameTime = diag_tickTime;
 
 		PR(_display) = _arg select 0;
 		uiNamespace setVariable ['HIA3_DisaplaySpectator', _display];
@@ -117,7 +118,8 @@ switch (_event) do
 		HIA3_Spectator_MapShowDead = nil;
 		HIA3_Spectator_EachFrame_DeadList = nil;
 		HIA3_Spectator_AttachCam_Angle = nil;
-
+		HIA3_Spectator_LastFrameTime = nil;
+		
 		HIA3_Spectator_Enable = false;
 	};
 	case "disp_keyDown":{
@@ -154,6 +156,10 @@ switch (_event) do
 						case SPECT_VIEWSTATE_FREE :
 						{
 							_arg call HIA3_spectator_fnc_keyDown_Free;
+						};
+						case SPECT_VIEWSTATE_ATTACH : 
+						{
+							_arg call HIA3_spectator_fnc_keyDown_Attach;
 						};
 					};
 				};

@@ -62,6 +62,7 @@ switch(_newState) do {
 		showcinemaborder false;
 		cameraEffectEnableHUD true;
 
+		[0, 0] call HIA3_spectator_fnc_rotateCamera;
 		[0] call HIA3_spectator_fnc_changeTargetUnit;
 	};
 	case SPECT_VIEWSTATE_FREE : 
