@@ -54,6 +54,8 @@ switch (_event) do
 		HIA3_Spectator_EachFrame_DeadList = [];
 		HIA3_Spectator_AttachCam_Angle = 0;
 		HIA3_Spectator_LastFrameTime = diag_tickTime;
+		HIA3_Spectator_TraceBulletList = [];
+		HIA3_Spectator_TraceBullet_On = false;
 
 		PR(_display) = _arg select 0;
 		uiNamespace setVariable ['HIA3_DisaplaySpectator', _display];
@@ -119,7 +121,9 @@ switch (_event) do
 		HIA3_Spectator_EachFrame_DeadList = nil;
 		HIA3_Spectator_AttachCam_Angle = nil;
 		HIA3_Spectator_LastFrameTime = nil;
-		
+		HIA3_Spectator_TraceBulletList = nil;
+		HIA3_Spectator_TraceBullet_On = nil;
+
 		HIA3_Spectator_Enable = false;
 	};
 	case "disp_keyDown":{
@@ -280,10 +284,40 @@ switch (_event) do
 			case (KEY_K): 
 			{
 				if(HIA3_Spectator_ShowDead) then {
-					HIA3_Spectator_ShowDead =  false;
+					HIA3_Spectator_ShowDead = false;
 				} else {
-					HIA3_Spectator_ShowDead =  true;
+					HIA3_Spectator_ShowDead = true;
 				};
+			};
+			case (KEY_B):
+			{
+				// Only if freeveww mode is avalible
+				if (HIA3_Spectator_FreeView && HIA3_Spectator_ShowEnemy) then {
+					private ["_objects", "_unit"];
+					if (HIA3_Spectator_TraceBullet_On) then {
+						// Turn off bullet trace
+						HIA3_Spectator_TraceBullet_On = false;
+
+						_objects = HIA3_Spectator_TraceBulletList;
+						for "_i" from 0 to ((count _objects) - 1) do {
+							_unit = _objects select _i;
+							[_unit,0] call HIA3_spectator_fnc_bulletTrace;
+						};
+					} else {
+						// Turn on bullet trace
+						if (_ctrl && _shift) then {
+							HIA3_Spectator_TraceBullet_On = true;
+							_objects = allUnits + vehicles;
+
+							for "_i" from 0 to ((count _objects) - 1) do {
+								_unit = _objects select _i;
+								if (alive _unit) then {
+									[_unit,2] call HIA3_spectator_fnc_bulletTrace;
+								};
+							};
+						};
+					};
+				};	
 			};
 		};
 		if(_key in [KEY_W,KEY_A,KEY_S,KEY_D,KEY_Q,KEY_Z]) then {

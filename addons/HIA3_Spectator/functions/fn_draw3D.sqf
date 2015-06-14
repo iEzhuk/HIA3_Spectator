@@ -159,3 +159,17 @@ switch (HIA3_Spectator_TagType) do
 	};
 };
 
+if (HIA3_Spectator_TraceBullet_On) then {
+	for "_i" from 0 to ((count HIA3_Spectator_TraceBulletList) - 1) do {
+		_unit = HIA3_Spectator_TraceBulletList select _i;
+		_lines = _unit getVariable ["SPECT_BT_lines", []];
+		_colors = _unit getVariable ["SPECT_BT_colors", []];
+		for "_k" from 0 to ((count _lines) - 1) do {
+			_line = _lines select _k;
+			_color = _colors select _k;
+			for "_z" from 1 to ((count _line) - 1) do {
+				drawLine3D [_line select (_z - 1), _line select _z, _color select (_z - 1)];
+			};
+		};
+	};
+};

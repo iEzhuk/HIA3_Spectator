@@ -32,7 +32,8 @@ HIA3_spectator_fnc_stopCam			= compileFinal preprocessFile ("HIA3_Spectator\func
 HIA3_spectator_fnc_switchCameraState= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_switchCameraState.sqf");
 HIA3_spectator_fnc_updateMarkers	= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_updateMarkers.sqf");
 HIA3_spectator_fnc_updateTagList	= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_updateTagList.sqf");
-
+HIA3_spectator_fnc_bulletTrace		= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_traceBullet.sqf");
+HIA3_spectator_fnc_bulletTrace_fired= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_traceBullet_fired.sqf");
 
 //================================================
 //					CLIENT
