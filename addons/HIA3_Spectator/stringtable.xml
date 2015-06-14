@@ -25,6 +25,7 @@
 					H - Hide HUD&lt;br/&gt;
 					X - Switch camera on nearest unit&lt;br/&gt;
 					K - Show\hide icon on dead units&lt;br/&gt;
+					Ctrl+Shift+B - Trace bullets&lt;br/&gt;
 					TAB - Open list of units&lt;br/&gt;
 					Ctrl+H - Hide 3D tags&lt;br/&gt;
 					&lt;br/&gt;
@@ -60,6 +61,7 @@
 					H - Скрыть интерфейс&lt;br/&gt;
 					X - Переключиться на ближайщего юнита&lt;br/&gt;
 					K - Показать\скрыть мертвых юнитов&lt;br/&gt;
+					Ctrl+Shift+B - Трассировка пуль и снарядов&lt;br/&gt;
 					TAB - Открыть список юниов&lt;br/&gt;
 					Ctrl+H - Скрыть 3D интерфейс&lt;br/&gt;
 					&lt;br/&gt;
