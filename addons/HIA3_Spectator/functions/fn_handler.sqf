@@ -53,6 +53,7 @@ switch (_event) do
 		HIA3_Spectator_MapShowDead = false; 
 		HIA3_Spectator_EachFrame_DeadList = [];
 		HIA3_Spectator_AttachCam_Angle = 0;
+		HIA3_Spectator_AttachCam_Pos = [0, -7, 3];
 		HIA3_Spectator_LastFrameTime = diag_tickTime;
 		HIA3_Spectator_TraceBulletList = [];
 		HIA3_Spectator_TraceBullet_On = false;
@@ -120,6 +121,7 @@ switch (_event) do
 		HIA3_Spectator_MapShowDead = nil;
 		HIA3_Spectator_EachFrame_DeadList = nil;
 		HIA3_Spectator_AttachCam_Angle = nil;
+		HIA3_Spectator_AttachCam_Pos = nil;
 		HIA3_Spectator_LastFrameTime = nil;
 		HIA3_Spectator_TraceBulletList = nil;
 		HIA3_Spectator_TraceBullet_On = nil;

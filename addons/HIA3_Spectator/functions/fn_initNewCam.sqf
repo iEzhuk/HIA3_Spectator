@@ -48,9 +48,11 @@ switch(_newState) do {
 			camDestroy HIA3_Spectator_Camera;
 		};
 
-		HIA3_Spectator_Camera_AngV = -10;
-		HIA3_Spectator_AttachCam_Angle = 0;
-		HIA3_Spectator_AttachCam_Pos = [0, -7, 3];
+		if (_lastState != SPECT_VIEWSTATE_ATTACH) then {
+			HIA3_Spectator_Camera_AngV = -10;
+			HIA3_Spectator_AttachCam_Angle = 0;
+			HIA3_Spectator_AttachCam_Pos = [0, -7, 3];
+		};
 
 		HIA3_Spectator_Camera =  "camera" camCreate _camPos;
 		HIA3_Spectator_Camera attachTo [vehicle HIA3_Spectator_ViewUnit, HIA3_Spectator_AttachCam_Pos];
