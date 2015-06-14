@@ -113,12 +113,14 @@ switch (_event) do
 
 		if(_unit in HIA3_Spectator_UnitList && alive _unit) then {
 			[_unit] call HIA3_spectator_fnc_changeTargetUnit;
+
+			if (HIA3_Spectator_State==SPECT_VIEWSTATE_FREE) then {
+				call HIA3_spectator_fnc_switchCameraState;
+			};
 		} else {
 			["update_playerlist", [HIA3_Spectator_GUIExt_curSide]] call HIA3_spectator_fnc_handlerSpectGUI;
 			diag_log "HIA3_spectator_fnc_handlerSpectGUI: <playerList_lb_changed> unit is no found";
 		};
-
-
 	};
 };
 _return
