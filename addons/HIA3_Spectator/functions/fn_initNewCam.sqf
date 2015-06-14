@@ -69,23 +69,22 @@ switch(_newState) do {
 	};
 	case SPECT_VIEWSTATE_FREE : 
 	{
-
 		PR(_pos) = getPosASL HIA3_Spectator_ViewUnit;
 		PR(_dir) = getDir HIA3_Spectator_ViewUnit;
-		PR(_camPos) = [
-			(_pos select 0) + sin(_dir+180)*7,
-			(_pos select 1) + cos(_dir+180)*7,
-			(_pos select 2) + 3
-		];
+		PR(_camPos) = ASLtoATL [(_pos select 0) + sin(_dir+180)*7, (_pos select 1) + cos(_dir+180)*7, (_pos select 2) + 3];
 
-		_camPos = ASLtoATL _camPos;
-		
 		if(_lastState != SPECT_VIEWSTATE_INTERNAL) then {
 			camDestroy HIA3_Spectator_Camera;
 		};
 
+		if (_lastState == SPECT_VIEWSTATE_ATTACH) then {
+			_camPos = (vehicle HIA3_Spectator_ViewUnit) modelToWorld HIA3_Spectator_AttachCam_Pos;
+			_dir = _dir + HIA3_Spectator_AttachCam_Angle; 
+		} else {
+			HIA3_Spectator_Camera_AngV = -10;
+		};
+
 		HIA3_Spectator_Camera =  "camera" camCreate _camPos;
-		HIA3_Spectator_Camera_AngV = -10;
 		HIA3_Spectator_Camera setDir _dir;
 		HIA3_Spectator_Camera setPos _camPos;
 		HIA3_Spectator_Fov = 0.7;
