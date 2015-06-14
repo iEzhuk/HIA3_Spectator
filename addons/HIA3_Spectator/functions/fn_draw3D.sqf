@@ -27,7 +27,20 @@ if !(isNil {_unit}) then {
 		_unit switchCamera "INTERNAL";
 		vehicle _unit switchCamera HIA3_Spectator_CameraMode;
 	};
+
+	if (HIA3_Spectator_State == SPECT_VIEWSTATE_ATTACH) then {
+		HIA3_Spectator_Camera setPos ((getPosVisual _unit) vectorAdd ARR_OFF);
+		HIA3_Spectator_Camera setDir (HIA3_Spectator_AttachCam_Angle + (getDirVisual _unit));
+		[
+			HIA3_Spectator_Camera,
+			HIA3_Spectator_Camera_AngV, 
+			0
+		] call bis_fnc_setpitchbank;
+		HIA3_Spectator_Camera camCommit 0;
+	};
 };
+
+
 
 if(HIA3_Spectator_Hide3D) exitWith {};
 
