@@ -26,13 +26,13 @@ if(_d < 0.3) then {
 
     PR(_dist) = _mult*_d;
 
-    if(KEY_W in HIA3_Spectator_Keys) then { _newPos=[0  , _dist, 0, _newPos, _curDir] call HIA3_spectator_fnc_changePosition;};
-    if(KEY_S in HIA3_Spectator_Keys) then { _newPos=[180, _dist, 0, _newPos, _curDir] call HIA3_spectator_fnc_changePosition;};
-    if(KEY_A in HIA3_Spectator_Keys) then { _newPos=[-90, _dist, 0, _newPos, _curDir] call HIA3_spectator_fnc_changePosition;};
-    if(KEY_D in HIA3_Spectator_Keys) then { _newPos=[90 , _dist, 0, _newPos, _curDir] call HIA3_spectator_fnc_changePosition;};
+    if (KEY_W in HIA3_Spectator_Keys) then { _newPos=[0  , _dist, 0, _newPos, _curDir] call HIA3_spectator_fnc_changePosition; };
+    if (KEY_S in HIA3_Spectator_Keys) then { _newPos=[180, _dist, 0, _newPos, _curDir] call HIA3_spectator_fnc_changePosition; };
+    if (KEY_A in HIA3_Spectator_Keys) then { _newPos=[-90, _dist, 0, _newPos, _curDir] call HIA3_spectator_fnc_changePosition; };
+    if (KEY_D in HIA3_Spectator_Keys) then { _newPos=[90 , _dist, 0, _newPos, _curDir] call HIA3_spectator_fnc_changePosition; };
 
-    if(KEY_Q in HIA3_Spectator_Keys) then { _newPos=[0, 0,  _dist, _newPos, _curDir] call HIA3_spectator_fnc_changePosition;};
-    if(KEY_Z in HIA3_Spectator_Keys) then { _newPos=[0, 0, -_dist, _newPos, _curDir] call HIA3_spectator_fnc_changePosition;};
+    if (KEY_Q in HIA3_Spectator_Keys) then { _newPos=[0, 0,  _dist, _newPos, _curDir] call HIA3_spectator_fnc_changePosition; };
+    if (KEY_Z in HIA3_Spectator_Keys) then { _newPos=[0, 0, -_dist, _newPos, _curDir] call HIA3_spectator_fnc_changePosition; };
 
     PR(_wpos) = (vehicle HIA3_Spectator_ViewUnit) modelToWorld _newPos;
     if (surfaceIsWater _wPos) then {
@@ -47,5 +47,11 @@ if(_d < 0.3) then {
     };
 
     HIA3_Spectator_AttachCam_Pos = _newPos;
-    HIA3_Spectator_Camera attachTo [vehicle HIA3_Spectator_ViewUnit, HIA3_Spectator_AttachCam_Pos];
+    if (HIA3_Spectator_ViewUnit != vehicle HIA3_Spectator_ViewUnit) then {
+        HIA3_Spectator_Camera attachTo [vehicle HIA3_Spectator_ViewUnit, HIA3_Spectator_AttachCam_Pos];
+    } else {
+        detach HIA3_Spectator_Camera;
+        HIA3_Spectator_Camera camSetPos ((getPos HIA3_Spectator_ViewUnit) vectorAdd HIA3_Spectator_AttachCam_Pos);
+        HIA3_Spectator_Camera camCommitPrepared 0.1;
+    };
 };
