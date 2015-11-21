@@ -30,7 +30,7 @@ PR(_func_alpha) = {
 		_min = 500;
 	};
 
-	if(_dist<_min)then{1.0}else{if(_dist>_max)then{0.1}else{1.0-0.9*(_dist-_min)/(_max-_min)}}
+	0.1 max (1.0 min (1.0-0.9*(_dist-_min)/(_max-_min)))
 };
 
 //=======================================//
@@ -83,12 +83,12 @@ for "_i" from 0 to (count _newList - 1) do {
 
 			if(_unit == _veh) then 
 			{
-				_newUnits pushBack [_unit, NAME(_unit), _color]
+				_newUnits pushBack [_unit, NAME(_unit), _color, [_unit] call HIA3_spectator_fnc_getIcon];
 			}else{
 				if(!(_veh in _vehs)) then {
 					PR(_crew) = crew _veh;
 					_text = format ["(%2) %1", NAME(_crew select 0), count _crew];
-					_newVehs pushBack [_veh, _text, _color];
+					_newVehs pushBack [_veh, _text, _color, [_veh] call HIA3_spectator_fnc_getIcon];
 				};
 			};
 		};

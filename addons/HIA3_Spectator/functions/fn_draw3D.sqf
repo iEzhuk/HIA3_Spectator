@@ -1,6 +1,6 @@
 /*
  	Name: HIA3_spectator_fnc_draw3D
- 	
+
  	Author(s):
 		Ezhuk
 
@@ -9,7 +9,7 @@
 
 	Parameters:
 		Nothing
-		
+
  	Returns:
 		Nothing
 */
@@ -26,7 +26,7 @@ if !(isNil {_unit}) then {
 	//=======================================//
 	//            Camera control             //
 	//=======================================//
-	if(HIA3_Spectator_State == SPECT_VIEWSTATE_INTERNAL) then 
+	if(HIA3_Spectator_State == SPECT_VIEWSTATE_INTERNAL) then
 	{
 		_unit switchCamera "INTERNAL";
 		vehicle _unit switchCamera HIA3_Spectator_CameraMode;
@@ -35,49 +35,9 @@ if !(isNil {_unit}) then {
 	//=======================================//
 	//        Conrole attached camera        //
 	//=======================================//
-	if(HIA3_Spectator_State == SPECT_VIEWSTATE_ATTACH) then 
+	if(HIA3_Spectator_State == SPECT_VIEWSTATE_ATTACH) then
 	{
-		// Time between two frame 
-		PR(_d) = HIA3_Spectator_LastFrameTime - _last_time;
-
-		if(_d < 0.3) then {
-			PR(_curDir) = HIA3_Spectator_AttachCam_Angle;
-			PR(_newPos) = HIA3_Spectator_AttachCam_Pos;
-
-
-			PR(_mult) = switch (true) do {
-							case (KEY_LCONTROL in HIA3_Spectator_Keys) : {2};
-							case (KEY_LSHIFT in HIA3_Spectator_Keys) : {10};
-							default {5};
-						};
-
-			PR(_dist) = _mult*_d;
-
-			if(KEY_W in HIA3_Spectator_Keys) then { _newPos=[0  , _dist, 0, _newPos, _curDir] call HIA3_spectator_fnc_changePosition;};
-			if(KEY_S in HIA3_Spectator_Keys) then { _newPos=[180, _dist, 0, _newPos, _curDir] call HIA3_spectator_fnc_changePosition;};
-			if(KEY_A in HIA3_Spectator_Keys) then { _newPos=[-90, _dist, 0, _newPos, _curDir] call HIA3_spectator_fnc_changePosition;};
-			if(KEY_D in HIA3_Spectator_Keys) then { _newPos=[90 , _dist, 0, _newPos, _curDir] call HIA3_spectator_fnc_changePosition;};
-
-			if(KEY_Q in HIA3_Spectator_Keys) then { _newPos=[0, 0,  _dist, _newPos, _curDir] call HIA3_spectator_fnc_changePosition;};
-			if(KEY_Z in HIA3_Spectator_Keys) then { _newPos=[0, 0, -_dist, _newPos, _curDir] call HIA3_spectator_fnc_changePosition;};
-
-			PR(_wpos) = (vehicle HIA3_Spectator_ViewUnit) modelToWorld _newPos;
-			if (surfaceIsWater _wPos) then {
-				PR(_tpos) = ASLToATL _wPos;
-				if (_tpos select 2 < 0) then {
-					_newPos set[2, (_newPos select 2) - (_tpos select 2)];
-				};
-			} else {
-				if (_wpos select 2 < 0) then {
-					_newPos set[2, (_newPos select 2) - (_wpos select 2)];
-				};
-			};
-
-			HIA3_Spectator_AttachCam_Pos = _newPos;
-			HIA3_Spectator_Camera attachTo [vehicle HIA3_Spectator_ViewUnit, HIA3_Spectator_AttachCam_Pos];
-
-		};
-
+		call HIA3_spectator_fnc_attachedCamera;
 	};
 };
 
@@ -96,7 +56,7 @@ if !(isNil {_unit}) then {
 		}else{
 			_pos set [2,(_pos select 2) + 4];
 		};
-		// target icon 
+		// target icon
 		drawIcon3D ["\A3\ui_f\data\map\groupicons\selector_selectedFriendly_ca.paa", _color, _pos, 1, 1, 2, "", 2, 0.05, "PuristaMedium"];
 	};
 };
@@ -105,28 +65,59 @@ switch (HIA3_Spectator_TagType) do
 {
 	case SPECT_TAG_ICON :
 	{
+		if (HIA3_Spectator_Camera_AngV < -70 and HIA3_Spectator_State == SPECT_VIEWSTATE_FREE) then {
+			//=========================================
+			// Tactical view
+			//=========================================
+			for "_i" from 0 to (count HIA3_Spectator_EachFrame_Vehs - 1) do {
+				PR(_vehInfo) = HIA3_Spectator_EachFrame_Vehs select _i;
+				PR(_pos) = visiblePosition (_vehInfo select 0);
+				PR(_dir) = getDir HIA3_Spectator_Camera - getDir (_vehInfo select 0);
 
-		for "_i" from 0 to (count HIA3_Spectator_EachFrame_Vehs - 1) do {
-			PR(_vehInfo) = HIA3_Spectator_EachFrame_Vehs select _i;
-			PR(_pos) = visiblePosition (_vehInfo select 0);
+				if(surfaceIsWater _pos)then{
+					_pos set [2,((getPosASL (_vehInfo select 0)) select 2)];
+				}else{
+					_pos set [2,((getPosATL (_vehInfo select 0)) select 2)];
+				};
 
-			if(surfaceIsWater _pos)then{
-				_pos set [2,((getPosASL (_vehInfo select 0)) select 2) + 4];
-			}else{
-				_pos set [2,((getPosATL (_vehInfo select 0)) select 2) + 4];
+				drawIcon3D [(_vehInfo select 3), (_vehInfo select 2),_pos, 0.9, 0.9, _dir, "", 2, 0.0, "PuristaMedium"];
 			};
+			for "_i" from 0 to (count HIA3_Spectator_EachFrame_Units - 1) do {
+				PR(_unitInfo) = HIA3_Spectator_EachFrame_Units select _i;
+				PR(_pos) = visiblePosition (_unitInfo select 0);
+				PR(_posEye) = if(!(surfaceIsWater _pos))then{ASLtoATL eyePos (_unitInfo select 0)}else{eyePos (_unitInfo select 0)};
+				PR(_dir) = getDir HIA3_Spectator_Camera - getDirVisual (_unitInfo select 0);
 
-			drawIcon3D ["a3\ui_f\data\map\markers\military\box_CA.paa", (_vehInfo select 2),_pos, 0.9, 0.9, 2, "", 2, 0.0, "PuristaMedium"];
+				_pos set [2,(_posEye select 2) + 0.5];
+				drawIcon3D [(_unitInfo select 3), (_unitInfo select 2), _pos, 0.65, 0.65, _dir, "", 2, 0.0, "PuristaMedium"];
+			};
+		} else {
+			//=========================================
+			// Simple icons
+			//=========================================
+			for "_i" from 0 to (count HIA3_Spectator_EachFrame_Vehs - 1) do {
+				PR(_vehInfo) = HIA3_Spectator_EachFrame_Vehs select _i;
+				PR(_pos) = visiblePosition (_vehInfo select 0);
+
+				if(surfaceIsWater _pos)then{
+					_pos set [2,((getPosASL (_vehInfo select 0)) select 2) + 4];
+				}else{
+					_pos set [2,((getPosATL (_vehInfo select 0)) select 2) + 4];
+				};
+
+				drawIcon3D ["a3\ui_f\data\map\markers\military\box_CA.paa", (_vehInfo select 2),_pos, 0.9, 0.9, 2, "", 2, 0.0, "PuristaMedium"];
+			};
+			for "_i" from 0 to (count HIA3_Spectator_EachFrame_Units - 1) do {
+				PR(_unitInfo) = HIA3_Spectator_EachFrame_Units select _i;
+				PR(_pos) = visiblePosition (_unitInfo select 0);
+				PR(_posEye) = if(!(surfaceIsWater _pos))then{ASLtoATL eyePos (_unitInfo select 0)}else{eyePos (_unitInfo select 0)};
+
+				_pos set [2,(_posEye select 2) + 0.5];
+				drawIcon3D ["a3\ui_f\data\map\VehicleIcons\iconexplosiveat_ca.paa", (_unitInfo select 2), _pos, 0.65, 0.65, 0, "", 2, 0.0, "PuristaMedium"];
+			};
 		};
-		for "_i" from 0 to (count HIA3_Spectator_EachFrame_Units - 1) do {
-			PR(_unitInfo) = HIA3_Spectator_EachFrame_Units select _i;
-			PR(_pos) = visiblePosition (_unitInfo select 0);
-			PR(_posEye) = if(!(surfaceIsWater _pos))then{ASLtoATL eyePos (_unitInfo select 0)}else{eyePos (_unitInfo select 0)};
 
-			_pos set [2,(_posEye select 2) + 0.5];
-			drawIcon3D ["a3\ui_f\data\map\VehicleIcons\iconexplosiveat_ca.paa", (_unitInfo select 2),_pos, 0.65, 0.65, 2, "", 2, 0.0, "PuristaMedium"];
-		};
-
+		// Show dead
 		if (HIA3_Spectator_ShowDead) then {
 			for "_i" from 0 to (count HIA3_Spectator_EachFrame_DeadList - 1) do {
 				PR(_unitInfo) = HIA3_Spectator_EachFrame_DeadList select _i;
@@ -134,7 +125,7 @@ switch (HIA3_Spectator_TagType) do
 				PR(_posEye) = if(!(surfaceIsWater _pos))then{ASLtoATL eyePos (_unitInfo select 0)}else{eyePos (_unitInfo select 0)};
 
 				_pos set [2,(_posEye select 2) + 0.5];
-				drawIcon3D ["a3\ui_f\data\map\VehicleIcons\iconexplosiveat_ca.paa", (_unitInfo select 2),_pos, 0.65, 0.65, 2, "", 2, 0.0, "PuristaMedium"];
+				drawIcon3D ["a3\ui_f\data\map\VehicleIcons\iconexplosiveat_ca.paa", (_unitInfo select 2),_pos, 0.65, 0.65, 0, "", 2, 0.0, "PuristaMedium"];
 			};
 		} else {
 			HIA3_Spectator_DeadList = [];

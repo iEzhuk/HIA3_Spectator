@@ -5,6 +5,7 @@
 		Ezhuk
 */
 
+HIA3_spectator_fnc_attachedCamera 	= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_attachedCamera.sqf");
 HIA3_spectator_fnc_changePosition	= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_changePosition.sqf");
 HIA3_spectator_fnc_changeTargetUnit	= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_changeTargetUnit.sqf");
 HIA3_spectator_fnc_changeVisionType	= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_changeVisionType.sqf");
@@ -24,6 +25,7 @@ HIA3_spectator_fnc_mapDraw			= compileFinal preprocessFile ("HIA3_Spectator\func
 HIA3_spectator_fnc_mapHandler		= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_mapHandler.sqf");
 HIA3_spectator_fnc_mapLoop			= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_mapLoop.sqf");
 HIA3_spectator_fnc_moveCamera		= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_moveCamera.sqf");
+HIA3_spectator_fnc_getIcon			= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_getIcon.sqf");
 HIA3_spectator_fnc_respawnSeagull	= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_respawnSeagull.sqf");
 HIA3_spectator_fnc_respawnSpecator	= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_respawnSpecator.sqf");
 HIA3_spectator_fnc_rotateCamera		= compileFinal preprocessFile ("HIA3_Spectator\functions\fn_rotateCamera.sqf");
