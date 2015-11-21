@@ -60,6 +60,12 @@ if !(isNil {_unit}) then {
     };
 };
 
+// private ["_hide_unit"];
+hide_unit = objNull;
+if (HIA3_Spectator_State==SPECT_VIEWSTATE_ATTACH) then {
+    hide_unit = vehicle HIA3_Spectator_ViewUnit;
+};
+
 switch (HIA3_Spectator_TagType) do
 {
     case SPECT_TAG_ICON :
@@ -73,13 +79,11 @@ switch (HIA3_Spectator_TagType) do
                 _vehInfo = HIA3_Spectator_EachFrame_Vehs select _i;
                 _pos = visiblePosition (_vehInfo select 0);
                 _dir = getDir HIA3_Spectator_Camera - getDir (_vehInfo select 0);
-
                 if(surfaceIsWater _pos)then{
                     _pos set [2,((getPosASL (_vehInfo select 0)) select 2)];
                 }else{
                     _pos set [2,((getPosATL (_vehInfo select 0)) select 2)];
                 };
-
                 drawIcon3D [(_vehInfo select 3), (_vehInfo select 2),_pos, 0.9, 0.9, _dir, "", 2, 0.0, "PuristaMedium"];
             };
             for "_i" from 0 to (count HIA3_Spectator_EachFrame_Units - 1) do {
@@ -97,15 +101,15 @@ switch (HIA3_Spectator_TagType) do
             //=========================================
             for "_i" from 0 to (count HIA3_Spectator_EachFrame_Vehs - 1) do {
                 _vehInfo = HIA3_Spectator_EachFrame_Vehs select _i;
-                _pos = visiblePosition (_vehInfo select 0);
-
-                if(surfaceIsWater _pos)then{
-                    _pos set [2,((getPosASL (_vehInfo select 0)) select 2) + 4];
-                }else{
-                    _pos set [2,((getPosATL (_vehInfo select 0)) select 2) + 4];
+                if ((_vehInfo select 0) != hide_unit) then {
+                    _pos = visiblePosition (_vehInfo select 0);
+                    if(surfaceIsWater _pos)then{
+                        _pos set [2,((getPosASL (_vehInfo select 0)) select 2) + 4];
+                    }else{
+                        _pos set [2,((getPosATL (_vehInfo select 0)) select 2) + 4];
+                    };
+                    drawIcon3D ["a3\ui_f\data\map\markers\military\box_CA.paa", (_vehInfo select 2),_pos, 0.9, 0.9, 2, "", 2, 0.0, "PuristaMedium"];
                 };
-
-                drawIcon3D ["a3\ui_f\data\map\markers\military\box_CA.paa", (_vehInfo select 2),_pos, 0.9, 0.9, 2, "", 2, 0.0, "PuristaMedium"];
             };
             for "_i" from 0 to (count HIA3_Spectator_EachFrame_Units - 1) do {
                 _unitInfo = HIA3_Spectator_EachFrame_Units select _i;
@@ -136,15 +140,16 @@ switch (HIA3_Spectator_TagType) do
         private ["_vehInfo", "_pos", "_dir", "_unitInfo", "_posEye"];
         for "_i" from 0 to (count HIA3_Spectator_EachFrame_Vehs - 1) do {
             _vehInfo = HIA3_Spectator_EachFrame_Vehs select _i;
-            _pos = visiblePosition (_vehInfo select 0);
+            if ((_vehInfo select 0) != hide_unit) then {
+                _pos = visiblePosition (_vehInfo select 0);
 
-            if(surfaceIsWater _pos)then{
-                _pos set [2,((getPosASL (_vehInfo select 0)) select 2) + 4];
-            }else{
-                _pos set [2,((getPosATL (_vehInfo select 0)) select 2) + 4];
+                if(surfaceIsWater _pos)then{
+                    _pos set [2,((getPosASL (_vehInfo select 0)) select 2) + 4];
+                }else{
+                    _pos set [2,((getPosATL (_vehInfo select 0)) select 2) + 4];
+                };
+                drawIcon3D ["", (_vehInfo select 2),_pos, 0.0, 0.0, 2, (_vehInfo select 1), 2, 0.036, "PuristaMedium"];
             };
-
-            drawIcon3D ["", (_vehInfo select 2),_pos, 0.0, 0.0, 2, (_vehInfo select 1), 2, 0.036, "PuristaMedium"];
         };
         for "_i" from 0 to (count HIA3_Spectator_EachFrame_Units - 1) do {
             _unitInfo = HIA3_Spectator_EachFrame_Units select _i;
