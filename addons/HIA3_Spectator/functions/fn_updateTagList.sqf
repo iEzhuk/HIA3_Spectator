@@ -135,7 +135,9 @@ for "_i" from 0 to (count _deadList - 1) do {
             _text = _unit getVariable ["PlayerName", "[AI]"];
             if (_text != "[AI]") then {
                 _color = [_unit getVariable ["PlayerSide",side _unit]] call BIS_fnc_sideColor;
-                _color vectorMultiply 0.2;
+                _color set [0, (_color select 0)*0.2];
+                _color set [1, (_color select 1)*0.2];
+                _color set [2, (_color select 2)*0.2];
             };
             _color set [3, [_dist] call _func_alpha];
             _newDead pushBack [_unit, _text, _color];
