@@ -1,6 +1,6 @@
 /*
 	Name: HIA3_spectator_fnc_respawnSeagull
-	
+
 	Author(s):
 		Ezhuk
 
@@ -24,4 +24,3 @@ if !(isNil "_seagull") then {
 
 waituntil {missionnamespace getvariable ["BIS_fnc_feedback_allowDeathScreen",true]};
 BIS_fnc_feedback_allowPP = false;
-

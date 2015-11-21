@@ -8,29 +8,29 @@
 #define IDD_SPECTATOR_COUNT3 10013
 #define IDD_SPECTATOR_HELP 10030
 
-#define IDD_SPECT_GUI			73300
-#define IDC_SPECT_BUTTON_1		73301
-#define IDC_SPECT_BUTTON_2		73302
-#define IDC_SPECT_BUTTON_3		73303
-#define IDC_SPECT_BUTTON_4		73304
-#define IDC_SPECT_PLAYERLIST	73305
-#define IDC_SPECT_VIEW			73306
+#define IDD_SPECT_GUI           73300
+#define IDC_SPECT_BUTTON_1      73301
+#define IDC_SPECT_BUTTON_2      73302
+#define IDC_SPECT_BUTTON_3      73303
+#define IDC_SPECT_BUTTON_4      73304
+#define IDC_SPECT_PLAYERLIST    73305
+#define IDC_SPECT_VIEW          73306
 #define IDD_SPECTATOR_MAP_DISPLAY 10100
 #define IDD_SPECTATOR_MAP_MAP 51
 
-#define SPECT_VIEWSTATE_INTERNAL		0x00
-#define SPECT_VIEWSTATE_ATTACH			0x01
-#define SPECT_VIEWSTATE_FREE			0x02
+#define SPECT_VIEWSTATE_INTERNAL        0x00
+#define SPECT_VIEWSTATE_ATTACH          0x01
+#define SPECT_VIEWSTATE_FREE            0x02
 
 
-#define SPECT_TAG_EMPTY		0x00
-#define SPECT_TAG_ICON		0x01
-#define SPECT_TAG_NAME		0x02
-#define SPECT_TAG_NUM		0x03
+#define SPECT_TAG_EMPTY     0x00
+#define SPECT_TAG_ICON      0x01
+#define SPECT_TAG_NAME      0x02
+#define SPECT_TAG_NUM       0x03
 
-#define SPECT_MAP_EMPTY		0x00
-#define SPECT_MAP_MINI		0x01
-#define SPECT_MAP_FULL		0x02
+#define SPECT_MAP_EMPTY     0x00
+#define SPECT_MAP_MINI      0x01
+#define SPECT_MAP_FULL      0x02
 
 #define KEY_ESCAPE          0x01
 #define KEY_1               0x02
@@ -118,15 +118,15 @@
 #define KEY_OEM_102         0x56    /* < > | on UK/Germany keyboards */
 #define KEY_F11             0x57
 #define KEY_NUMPADENTER     0x9C    /* Enter on numeric keypad */
-#define KEY_DELETE			0xD3	/* Delete*/
+#define KEY_DELETE          0xD3    /* Delete*/
 
-#define KEY_UP 				200
-#define KEY_DOWN 			208
-#define KEY_LEFT 			203
-#define KEY_RIGHT 			205
+#define KEY_UP              200
+#define KEY_DOWN            208
+#define KEY_LEFT            203
+#define KEY_RIGHT           205
 
-#define MOUSE_LEFT			0
-#define MOUSE_RIGHT			1
+#define MOUSE_LEFT          0
+#define MOUSE_RIGHT         1
 
 #define PR(x) private ['x']; x
 

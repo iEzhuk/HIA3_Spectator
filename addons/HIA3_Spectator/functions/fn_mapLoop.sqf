@@ -1,17 +1,17 @@
 /*
- 	Name: HIA3_spectator_fnc_mapLoop
- 	
- 	Author(s):
-		Ezhuk
+    Name: HIA3_spectator_fnc_mapLoop
 
- 	Description:
-		Map updater 
+    Author(s):
+        Ezhuk
 
-	Parameters:
-		Nothing
-		
- 	Returns:
-		Nothing
+    Description:
+        Map updater
+
+    Parameters:
+        Nothing
+
+    Returns:
+        Nothing
 */
 #include "defines.sqf"
 
@@ -19,12 +19,11 @@ disableSerialization;
 
 while {true} do {
 
-	if(isNull findDisplay IDD_SPECTATOR_MAP_DISPLAY) then {
-		call HIA3_spectator_fnc_clearMapMarkers;
-	} else {
-		call HIA3_spectator_fnc_updateMarkers;
-	};
+    if(isNull findDisplay IDD_SPECTATOR_MAP_DISPLAY) then {
+        call HIA3_spectator_fnc_clearMapMarkers;
+    } else {
+        call HIA3_spectator_fnc_updateMarkers;
+    };
 
-	sleep 0.2;
+    sleep 0.2;
 };
-

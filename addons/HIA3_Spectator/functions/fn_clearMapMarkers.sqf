@@ -1,25 +1,25 @@
 /*
- 	Name: HIA3_spectator_fnc_clearMapMarkers
- 	
- 	Author(s):
-		Ezhuk
+    Name: HIA3_spectator_fnc_clearMapMarkers
 
- 	Description:
-		Remove all added markers 
+    Author(s):
+        Ezhuk
 
-	Parameters:
-		Nothing
+    Description:
+        Remove all added markers
 
- 	Returns:
-		Nothing
+    Parameters:
+        Nothing
+
+    Returns:
+        Nothing
 */
 
 if(count HIA3_Spectator_ObjMarkers > 0) then {
-	HIA3_Spectator_ObjMarkers = [];
-	{
-		if(_x select [0,6] == "Spect_") then 
-		{
-			deleteMarkerLocal _x;
-		};
-	} forEach allMapMarkers;
+    HIA3_Spectator_ObjMarkers = [];
+    {
+        if(_x select [0,6] == "Spect_") then
+        {
+            deleteMarkerLocal _x;
+        };
+    } forEach allMapMarkers;
 }
