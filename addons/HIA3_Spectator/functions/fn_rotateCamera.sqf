@@ -22,8 +22,8 @@ PR(_dV) = _this select 1;
 PR(_mult) = if (KEY_LCONTROL in HIA3_Spectator_Keys) then {0.7} else {2};
 
 
-switch (HIA3_Spectator_State) do {
-    case SPECT_VIEWSTATE_ATTACH : {
+switch (true) do {
+    case (HIA3_Spectator_State==SPECT_VIEWSTATE_ATTACH and HIA3_Spectator_ViewUnit != vehicle HIA3_Spectator_ViewUnit) : {
         HIA3_Spectator_Camera_AngV = (HIA3_Spectator_Camera_AngV - _dV*HIA3_Spectator_Fov*_mult) max -89.9 min 89.9;
         HIA3_Spectator_AttachCam_Angle = (HIA3_Spectator_AttachCam_Angle + _dH*HIA3_Spectator_Fov*_mult) % 360;
 

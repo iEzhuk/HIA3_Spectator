@@ -17,6 +17,9 @@ PR(_d) = HIA3_Spectator_LastFrameTime - _last_time;
 if(_d < 0.3) then {
     PR(_curDir) = HIA3_Spectator_AttachCam_Angle;
     PR(_newPos) = HIA3_Spectator_AttachCam_Pos;
+    if (HIA3_Spectator_ViewUnit == vehicle HIA3_Spectator_ViewUnit) then {
+        _curDir = getDir HIA3_Spectator_Camera;
+    };
 
     PR(_mult) = switch (true) do {
                     case (KEY_LCONTROL in HIA3_Spectator_Keys) : {2};
@@ -54,4 +57,6 @@ if(_d < 0.3) then {
         HIA3_Spectator_Camera camSetPos ((getPos HIA3_Spectator_ViewUnit) vectorAdd HIA3_Spectator_AttachCam_Pos);
         HIA3_Spectator_Camera camCommitPrepared 0.1;
     };
+    // TODO: it's fast fix, to rotate camera when taget unit changing
+    [0, 0] call HIA3_spectator_fnc_rotateCamera;
 };
