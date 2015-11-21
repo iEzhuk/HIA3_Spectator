@@ -128,7 +128,7 @@ for "_i" from 0 to (count _uavs - 1) do {
 for "_i" from 0 to (count _deadList - 1) do {
     _unit = _deadList select _i;
     if(_unit isKindOf "CAmanBase") then {
-        _pos = getPos _obj;
+        _pos = getPos _unit;
         _dist = [_posCam select 0, _posCam select 1, 0] distance [_pos select 0, _pos select 1, 0];
         if(_dist < viewDistance+1500) then {
             _color = [0,0,0,0];
