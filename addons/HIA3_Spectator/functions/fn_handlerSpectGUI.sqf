@@ -84,7 +84,11 @@ switch (_event) do
         lbClear _playerlist;
         {
             if(side _x == _selectedSide && alive _x) then {
-                _playerlist lbAdd (NAME(_x));
+                _txt = NAME(_x);
+                if (vehicle _x != _x) then {
+                    _txt = _txt + " - " + getText(configFile >> "CfgVehicles" >> typeOf (vehicle _x) >> "displayName");
+                };
+                _playerlist lbAdd _txt;
                 _playerlist lbSetData [_ind, str(_ind)];
                 HIA3_Spectator_PlayerListGUIExt set [_ind, _x];
                 _ind = _ind + 1;
