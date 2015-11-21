@@ -14,9 +14,17 @@
         STRING: path to files
 */
 
-private ["_obj"];
+private ["_obj", "_hasLRRadio"];
 
 _obj = _this select 0;
+
+_hasLRRadio = {
+    if isNil "TFAR_fnc_getConfigProperty" then {
+        0
+    } else {
+        [(backpack _obj), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty
+    };
+};
 
 if (_obj isKindOf "Man") then {
     //====================================
@@ -24,7 +32,7 @@ if (_obj isKindOf "Man") then {
     //====================================
     switch (true) do {
         // Leader
-        case ([(backpack _obj), "tf_hasLRradio", 0] call TFAR_fnc_getConfigProperty == 1):
+        case ([] call _hasLRRadio):
         {
             "\A3\ui_f\data\map\vehicleicons\iconManLeader_ca.paa"
         };
