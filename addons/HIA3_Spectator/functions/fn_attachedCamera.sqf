@@ -55,7 +55,7 @@ if(_d < 0.3) then {
     } else {
         detach HIA3_Spectator_Camera;
         HIA3_Spectator_Camera camSetPos ((getPos HIA3_Spectator_ViewUnit) vectorAdd HIA3_Spectator_AttachCam_Pos);
-        HIA3_Spectator_Camera camCommitPrepared 0.1;
+        HIA3_Spectator_Camera camCommitPrepared 0.15;
     };
     // TODO: it's fast fix, to rotate camera when taget unit changing
     [0, 0] call HIA3_spectator_fnc_rotateCamera;

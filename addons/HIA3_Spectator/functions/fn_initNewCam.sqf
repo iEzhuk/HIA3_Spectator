@@ -48,15 +48,28 @@ switch(_newState) do {
             camDestroy HIA3_Spectator_Camera;
         };
 
-        if (_lastState != SPECT_VIEWSTATE_ATTACH) then {
+        HIA3_Spectator_Camera =  "camera" camCreate _camPos;
+
+        if (HIA3_Spectator_ViewUnit == vehicle HIA3_Spectator_ViewUnit) then {
+            HIA3_Spectator_Camera_AngV = -10;
+            HIA3_Spectator_AttachCam_Angle = -10;
+            _dir = getDir HIA3_Spectator_ViewUnit;
+            HIA3_Spectator_AttachCam_Pos = [cos(-90-_dir)*7, sin(-90-_dir)*7, 3];
+            HIA3_Spectator_Camera setDir _dir;
+
+            HIA3_Spectator_Camera camSetPos ((getPos HIA3_Spectator_ViewUnit) vectorAdd HIA3_Spectator_AttachCam_Pos);
+            HIA3_Spectator_Camera camCommitPrepared 0;
+        } else {
             HIA3_Spectator_Camera_AngV = -10;
             HIA3_Spectator_AttachCam_Angle = 0;
             HIA3_Spectator_AttachCam_Pos = [0, -7, 3];
+
+            HIA3_Spectator_Camera attachTo [vehicle HIA3_Spectator_ViewUnit, HIA3_Spectator_AttachCam_Pos];
+            HIA3_Spectator_Camera setDir HIA3_Spectator_AttachCam_Angle;
         };
 
-        HIA3_Spectator_Camera =  "camera" camCreate _camPos;
-        HIA3_Spectator_Camera attachTo [vehicle HIA3_Spectator_ViewUnit, HIA3_Spectator_AttachCam_Pos];
-        HIA3_Spectator_Camera setDir HIA3_Spectator_AttachCam_Angle;
+
+
 
         HIA3_Spectator_Camera cameraEffect ["internal","top"];
         HIA3_Spectator_Camera camCommitPrepared 0;
