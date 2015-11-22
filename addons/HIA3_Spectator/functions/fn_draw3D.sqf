@@ -60,10 +60,10 @@ if !(isNil {_unit}) then {
     };
 };
 
-// private ["_hide_unit"];
-hide_unit = objNull;
+private ["_hide_unit"];
+_hide_unit = objNull;
 if (HIA3_Spectator_State==SPECT_VIEWSTATE_ATTACH) then {
-    hide_unit = vehicle HIA3_Spectator_ViewUnit;
+    _hide_unit = vehicle HIA3_Spectator_ViewUnit;
 };
 
 switch (HIA3_Spectator_TagType) do
@@ -71,7 +71,7 @@ switch (HIA3_Spectator_TagType) do
     case SPECT_TAG_ICON :
     {
         private ["_vehInfo", "_pos", "_dir", "_unitInfo", "_posEye"];
-        if (HIA3_Spectator_Camera_AngV < -70 and HIA3_Spectator_State == SPECT_VIEWSTATE_FREE) then {
+        if (HIA3_Spectator_Camera_AngV < -70 and HIA3_Spectator_State != SPECT_VIEWSTATE_INTERNAL) then {
             //=========================================
             // Tactical view
             //=========================================
@@ -101,7 +101,7 @@ switch (HIA3_Spectator_TagType) do
             //=========================================
             for "_i" from 0 to (count HIA3_Spectator_EachFrame_Vehs - 1) do {
                 _vehInfo = HIA3_Spectator_EachFrame_Vehs select _i;
-                if ((_vehInfo select 0) != hide_unit) then {
+                if ((_vehInfo select 0) != _hide_unit) then {
                     _pos = visiblePosition (_vehInfo select 0);
                     if(surfaceIsWater _pos)then{
                         _pos set [2,((getPosASL (_vehInfo select 0)) select 2) + 4];
@@ -140,7 +140,7 @@ switch (HIA3_Spectator_TagType) do
         private ["_vehInfo", "_pos", "_dir", "_unitInfo", "_posEye"];
         for "_i" from 0 to (count HIA3_Spectator_EachFrame_Vehs - 1) do {
             _vehInfo = HIA3_Spectator_EachFrame_Vehs select _i;
-            if ((_vehInfo select 0) != hide_unit) then {
+            if ((_vehInfo select 0) != _hide_unit) then {
                 _pos = visiblePosition (_vehInfo select 0);
 
                 if(surfaceIsWater _pos)then{
