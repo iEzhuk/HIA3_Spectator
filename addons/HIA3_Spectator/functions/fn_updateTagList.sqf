@@ -83,7 +83,7 @@ for "_i" from 0 to (count _newList - 1) do {
             {
                 _newUnits pushBack [_unit, NAME(_unit), _color, [_unit] call HIA3_spectator_fnc_getIcon];
             }else{
-                if(!(_veh in _vehs)) then {
+                if(!(_veh in _vehs) and !(_veh in allUnitsUav)) then {
                     _crew = crew _veh;
                     _text = format ["(%2) %1", NAME(_crew select 0), count _crew];
                     _newVehs pushBack [_veh, _text, _color, [_veh] call HIA3_spectator_fnc_getIcon];
@@ -115,9 +115,9 @@ for "_i" from 0 to (count _uavs - 1) do {
                 _text = NAME(_unit);
             };
         };
-        if(!(_veh in _vehs)) then {
+        if(!(_uav in _vehs)) then {
             _newVehs pushBack [_uav, _text, _color];
-            _vehs pushBack _veh;
+            _vehs pushBack _uav;
         };
     };
 };
