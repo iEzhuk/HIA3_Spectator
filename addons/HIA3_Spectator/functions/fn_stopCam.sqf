@@ -1,26 +1,26 @@
 /*
-	Name: HIA3_spectator_fnc_stopCam  
-	
-	Author(s):
-		Ezhuk
+    Name: HIA3_spectator_fnc_stopCam
 
-	Description:
-		Immediately stops the free camera
+    Author(s):
+        Ezhuk
 
-	Parameters:
-		Nothing
+    Description:
+        Immediately stops the free camera
 
-	Returns:
-		Nothing
+    Parameters:
+        Nothing
+
+    Returns:
+        Nothing
 */
 #include "defines.sqf"
-		
+
 if(HIA3_Spectator_State == SPECT_VIEWSTATE_FREE) then {
-	if({_x in [KEY_W,KEY_A,KEY_S,KEY_D,KEY_Q,KEY_Z]} count HIA3_Spectator_Keys == 0) then {
-		private ["_pos"];
-		_pos = getPosATL HIA3_Spectator_Camera;
-		_pos = if(surfaceIsWater _pos)then{getPosASL HIA3_Spectator_Camera}else{getPosATL HIA3_Spectator_Camera};
-		HIA3_Spectator_Camera camSetPos _pos;
-		HIA3_Spectator_Camera camCommit 0;
-	};
+    if({_x in [KEY_W,KEY_A,KEY_S,KEY_D,KEY_Q,KEY_Z]} count HIA3_Spectator_Keys == 0) then {
+        private ["_pos"];
+        _pos = getPosATL HIA3_Spectator_Camera;
+        _pos = if(surfaceIsWater _pos)then{getPosASL HIA3_Spectator_Camera}else{getPosATL HIA3_Spectator_Camera};
+        HIA3_Spectator_Camera camSetPos _pos;
+        HIA3_Spectator_Camera camCommit 0;
+    };
 };
