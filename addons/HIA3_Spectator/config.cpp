@@ -14,9 +14,9 @@ class CfgPatches
         requiredAddons[] = {"A3_Functions_F"};
         author[] = {"Ezhuk"};
         authorUrl = "http://www.hia3.com";
-        version = 1.1.1;
-        versionStr = "1.1.1";
-        versionAr[] = {1,1,1};
+        version = 1.1.2;
+        versionStr = "1.1.2";
+        versionAr[] = {1,1,2};
     };
 };
 
