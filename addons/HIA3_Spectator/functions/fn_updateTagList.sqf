@@ -76,7 +76,7 @@ for "_i" from 0 to (count _newList - 1) do {
     _posVeh = getPos _veh;
     if(alive _unit) then {
         _dist = _posCam distance2D _posVeh;
-        if(_dist < viewDistance+1500) then {
+        if(_dist < viewDistance+500) then {
             _color = [side _unit] call BIS_fnc_sideColor;
             _color set [3, [_dist] call _func_alpha];
             if(_unit == _veh) then
