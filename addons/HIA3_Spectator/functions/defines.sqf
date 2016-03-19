@@ -130,3 +130,5 @@
 
 #define NAME(x) if(isPlayer (x))then{(x) getVariable ["PlayerName", name (x)]}else{((x) getVariable ["PlayerName", name (x)])+" [AI]"}
 #define SIDE(x) (x) getVariable ["PlayerSide", side (x)]
+
+#define FIRED_LINES_LIVETIME 15
