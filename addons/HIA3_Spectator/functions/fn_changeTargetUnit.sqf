@@ -22,27 +22,27 @@ switch (typeName (_this select 0)) do
 {
     case "SCALAR" : {
         if(count HIA3_Spectator_UnitList > 0) then {
-            PR(_d) = _this select 0;
-            PR(_ind) = HIA3_Spectator_UnitList find HIA3_Spectator_ViewUnit;
-            PR(_count) = count HIA3_Spectator_UnitList;
-            PR(_newInd) = _ind + _d;
+            params ["_d"];
+            private _ind = HIA3_Spectator_UnitList find HIA3_Spectator_ViewUnit;
+            private _count = count HIA3_Spectator_UnitList;
+            private _newInd = _ind + _d;
 
             if(_newInd>=_count)then{_newInd=0;};
             if(_newInd<0)then{_newInd=_count-1;};
 
             HIA3_Spectator_ViewUnit = HIA3_Spectator_UnitList select _newInd;
 
-            PR(_dialog) = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
-            PR(_ctrlName) = _dialog displayCtrl IDD_SPECTATOR_PLAYER_NAME;
-            PR(_textName) = NAME(HIA3_Spectator_ViewUnit);
-            PR(_color) = [side HIA3_Spectator_ViewUnit] call BIS_fnc_sideColor;
+            private _dialog = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
+            private _ctrlName = _dialog displayCtrl IDD_SPECTATOR_PLAYER_NAME;
+            private _textName = NAME(HIA3_Spectator_ViewUnit);
+            private _color = [side HIA3_Spectator_ViewUnit] call BIS_fnc_sideColor;
 
             _ctrlName ctrlSetText _textName;
             _ctrlName ctrlSetBackgroundColor _color;
             _ctrlName ctrlCommit 0;
         }else{
-            PR(_dialog) = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
-            PR(_ctrlName) = _dialog displayCtrl IDD_SPECTATOR_PLAYER_NAME;
+            private _dialog = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
+            private _ctrlName = _dialog displayCtrl IDD_SPECTATOR_PLAYER_NAME;
 
             _ctrlName ctrlSetText "";
             _ctrlName ctrlSetBackgroundColor [0,0,0,1];
@@ -52,14 +52,14 @@ switch (typeName (_this select 0)) do
         };
     };
     case "OBJECT" : {
-        PR(_unit) = _this select 0;
+        params ["_unit"];
         if(_unit in HIA3_Spectator_UnitList) then {
             HIA3_Spectator_ViewUnit = _unit;
 
-            PR(_dialog) = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
-            PR(_ctrlName) = _dialog displayCtrl IDD_SPECTATOR_PLAYER_NAME;
-            PR(_textName) = NAME(HIA3_Spectator_ViewUnit);
-            PR(_color) = [side HIA3_Spectator_ViewUnit] call BIS_fnc_sideColor;
+            private _dialog = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
+            private _ctrlName = _dialog displayCtrl IDD_SPECTATOR_PLAYER_NAME;
+            private _textName = NAME(HIA3_Spectator_ViewUnit);
+            private _color = [side HIA3_Spectator_ViewUnit] call BIS_fnc_sideColor;
 
             _ctrlName ctrlSetText _textName;
             _ctrlName ctrlSetBackgroundColor _color;

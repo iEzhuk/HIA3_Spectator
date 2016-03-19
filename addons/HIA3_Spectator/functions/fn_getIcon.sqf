@@ -14,11 +14,9 @@
         STRING: path to files
 */
 
-private ["_obj", "_hasLRRadio"];
+params ["_obj"];
 
-_obj = _this select 0;
-
-_hasLRRadio = {
+private _hasLRRadio = {
     if isNil "TFAR_fnc_getConfigProperty" then {
         0
     } else {

@@ -15,9 +15,12 @@
 */
 #include "defines.sqf"
 
+private _pos = [0,0,0];
 if !(isNil {HIA3_Spectator_ViewUnit}) then {
-    PR(_pos) = if(HIA3_Spectator_State == SPECT_VIEWSTATE_INTERNAL)then{getPos vehicle HIA3_Spectator_ViewUnit}else{getPos HIA3_Spectator_Camera};
-    _pos
-}else{
-    [0,0,0]
+    if (HIA3_Spectator_State == SPECT_VIEWSTATE_INTERNAL) then {
+        _pos = getPos vehicle HIA3_Spectator_ViewUnit;
+    } else {
+        _pos = getPos HIA3_Spectator_Camera;
+    };
 };
+_pos

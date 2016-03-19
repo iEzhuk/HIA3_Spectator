@@ -15,10 +15,7 @@
 */
 #include "defines.sqf"
 
-PR(_key)    = _this select 1;
-PR(_shift)  = _this select 2;
-PR(_ctrl)   = _this select 3;
-PR(_alt)    = _this select 4;
+params ["_disp", "_key", "_shift", "_ctrl", "_alt"];
 
 switch (_key) do
 {
@@ -64,14 +61,15 @@ switch (_key) do
     {
         if(count HIA3_Spectator_UnitList > 0) then {
 
-            PR(_curPos) = call HIA3_spectator_fnc_currentPosition;
-            PR(_nearestUnit) = nullObj;
-            PR(_dist) = 10000;
+            private _curPos = call HIA3_spectator_fnc_currentPosition;
+            private _nearestUnit = nullObj;
+            private _dist = 10000;
 
+            private ["_unit", "_unitPos", "_newDist"];
             for "_i" from 0 to ((count HIA3_Spectator_UnitList)-1) do {
-                PR(_unit) = HIA3_Spectator_UnitList select _i;
-                PR(_unitPos) = getPos _unit;
-                PR(_newDist) = [_curPos select 0, _curPos select 1, 0] distance [_unitPos select 0, _unitPos select 1, 0];
+                _unit = HIA3_Spectator_UnitList select _i;
+                _unitPos = getPos _unit;
+                _newDist = [_curPos select 0, _curPos select 1, 0] distance [_unitPos select 0, _unitPos select 1, 0];
 
                 if (_newDist < _dist) then {
                     _dist = _newDist;

@@ -16,10 +16,8 @@
 */
 
 #include "defines.sqf"
-
-PR(_event) = _this select 0;
-PR(_arg) = _this select 1;
-PR(_return) = false;
+params ["_event", "_arg"];
+private _return = false;
 
 switch (_event) do
 {
@@ -58,11 +56,11 @@ switch (_event) do
         HIA3_Spectator_TraceBulletList = [];
         HIA3_Spectator_TraceBullet_On = false;
 
-        PR(_display) = _arg select 0;
+        private _display = _arg select 0;
         uiNamespace setVariable ['HIA3_DisaplaySpectator', _display];
         HIA3_Spectator_DrawEvent = addMissionEventHandler ["Draw3D", "call HIA3_spectator_fnc_draw3D"];
 
-        PR(_ctrlHelp) = _display displayCtrl IDD_SPECTATOR_HELP;
+        private _ctrlHelp = _display displayCtrl IDD_SPECTATOR_HELP;
         _ctrlHelp ctrlShow false;
 
         call HIA3_spectator_fnc_updateTagList;
@@ -129,10 +127,7 @@ switch (_event) do
         HIA3_Spectator_Enable = false;
     };
     case "disp_keyDown":{
-        PR(_key)    = _arg select 1;
-        PR(_shift)  = _arg select 2;
-        PR(_ctrl)   = _arg select 3;
-        PR(_alt)    = _arg select 4;
+        _arg params ["_disp", "_key", "_shift", "_ctrl", "_alt"];
 
         // check ALT+TAB
         if (_key == KEY_TAB && _alt) exitWith {
@@ -179,10 +174,7 @@ switch (_event) do
     };
     case "disp_keyUp" :
     {
-        PR(_key)    = _arg select 1;
-        PR(_shift)  = _arg select 2;
-        PR(_ctrl)   = _arg select 3;
-        PR(_alt)    = _arg select 4;
+        _arg params ["_disp", "_key", "_shift", "_ctrl", "_alt"];
 
         HIA3_Spectator_Keys = HIA3_Spectator_Keys - [_key];
 
@@ -201,7 +193,7 @@ switch (_event) do
             };
             case (KEY_T):
             {
-                PR(_mod) = (HIA3_Spectator_Tag min SPECT_TAG_NUM) max 1 min 3;
+                private _mod = (HIA3_Spectator_Tag min SPECT_TAG_NUM) max 1 min 3;
                 if(HIA3_Spectator_SpecialAdmin && serverCommandAvailable('#kick')) then {
                     _mod = 3
                 };
@@ -209,7 +201,7 @@ switch (_event) do
             };
             case (KEY_N):
             {
-                PR(_mod) = if(HIA3_Spectator_FreeViewTI)then{4}else{2};
+                private _mod = if(HIA3_Spectator_FreeViewTI)then{4}else{2};
                 if(HIA3_Spectator_SpecialAdmin && serverCommandAvailable('#kick')) then {
                     _mod = 4
                 };
@@ -223,8 +215,8 @@ switch (_event) do
             };
             case (KEY_C):
             {
-                PR(_display) = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
-                PR(_ctrlCrew) = _display displayCtrl 10013;
+                private _display = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
+                private _ctrlCrew = _display displayCtrl 10013;
                 if(HIA3_Spectator_ShowCrewVeh) then {
                     HIA3_Spectator_ShowCrewVeh = false;
                     _ctrlCrew ctrlSetPosition [-0.2*safezoneW+safezoneX,0.4*safezoneH+safezoneY];
@@ -242,10 +234,10 @@ switch (_event) do
                     HIA3_Spectator_Hide3D = !HIA3_Spectator_Hide3D;
                 }else{
                     //Hide HUD
-                    PR(_display) = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
+                    private _display = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
                     if(HIA3_Spectator_HideControls) then {
                         {
-                            PR(_ctr) = _display displayCtrl _x;
+                            private _ctr = _display displayCtrl _x;
                             _ctr ctrlShow true;
                         } foreach [ IDD_SPECTATOR_PLAYER_NAME,
                                     IDD_SPECTATOR_TIME,
@@ -258,7 +250,7 @@ switch (_event) do
                         HIA3_Spectator_HideControls = false;
                     }else{
                         {
-                            PR(_ctr) = _display displayCtrl _x;
+                            private _ctr = _display displayCtrl _x;
                             _ctr ctrlShow false;
                         } foreach [ IDD_SPECTATOR_PLAYER_NAME,
                                     IDD_SPECTATOR_TIME,
@@ -275,8 +267,8 @@ switch (_event) do
             };
             case (KEY_F1):
             {
-                PR(_display) = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
-                PR(_ctrlHelp) = _display displayCtrl IDD_SPECTATOR_HELP;
+                private _display = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
+                private _ctrlHelp = _display displayCtrl IDD_SPECTATOR_HELP;
                 if(ctrlShown _ctrlHelp) then {
                     _ctrlHelp ctrlShow false;
                 } else {
@@ -331,8 +323,7 @@ switch (_event) do
     };
     case "disp_mouseMovie" :
     {
-        PR(_nH) = _arg select 1;
-        PR(_nV) = _arg select 2;
+        _arg params ["_disp", "_nH", "_nV"];
 
         if!(isNull findDisplay IDD_SPECTATOR_MAP_DISPLAY)exitWith{};
 
@@ -357,9 +348,7 @@ switch (_event) do
     };
     case "disp_mouseButtonUp" :
     {
-        PR(_button) = _arg select 1;
-        PR(_pX) = _arg select 2;
-        PR(_pY) = _arg select 3;
+        _arg params ["_disp", "_button", "_pX", "_pY"];
 
         HIA3_Spectator_Buttons = HIA3_Spectator_Buttons - [_button];
 
@@ -409,9 +398,7 @@ switch (_event) do
     };
     case "disp_mouseButtonDown" :
     {
-        PR(_button) = _arg select 1;
-        PR(_pX) = _arg select 2;
-        PR(_pY) = _arg select 3;
+        _arg params ["_disp", "_button", "_pX", "_pY"];
 
         if !(_button in HIA3_Spectator_Buttons) then {
             HIA3_Spectator_Buttons = HIA3_Spectator_Buttons + [_button];

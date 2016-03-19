@@ -15,11 +15,9 @@
         Nothing
 */
 #include "defines.sqf"
+params ["_dH", "_dV"];
 
-PR(_dH) = _this select 0;
-PR(_dV) = _this select 1;
-
-PR(_mult) = if (KEY_LCONTROL in HIA3_Spectator_Keys) then {0.7} else {2};
+private _mult = if (KEY_LCONTROL in HIA3_Spectator_Keys) then {0.7} else {2};
 
 
 switch (true) do {

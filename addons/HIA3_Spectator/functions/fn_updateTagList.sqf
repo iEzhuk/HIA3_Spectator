@@ -33,11 +33,11 @@ _func_alpha = {
 //=======================================//
 //           Find alive units            //
 //=======================================//
-private["_newList", "_allUnits", "_state", "_unit"];
-_newList = [];
-_allUnits = allUnits;
-_state = HIA3_Spectator_State;
+private _newList = [];
+private _allUnits = allUnits;
+private _state = HIA3_Spectator_State;
 
+private["_unit"];
 for "_i" from 0 to (count _allUnits - 1) do {
     _unit = _allUnits select _i;
     if(alive _unit) then {
@@ -54,20 +54,19 @@ for "_i" from 0 to (count _allUnits - 1) do {
 if(isNil "HIA3_Spectator_UnitList") exitWith {};
 HIA3_Spectator_UnitList = _newList;
 
-private ["_deadList", "_vehs", "_posCam", "_tmp", "_text", "_newUnits", "_newVehs", "_newDead"];
-_uavs = allUnitsUav;
-_deadList = allDead;
+private _uavs = allUnitsUav;
+private _deadList = allDead;
 
 //=======================================//
 //               Find alive units        //
 //=======================================//
-_vehs = [];
-_posCam = [] call HIA3_spectator_fnc_currentPosition;
-_tmp = [];
-_text = "";
-_newUnits = [];
-_newVehs = [];
-_newDead = [];
+private _vehs = [];
+private _posCam = [] call HIA3_spectator_fnc_currentPosition;
+private _tmp = [];
+private _text = "";
+private _newUnits = [];
+private _newVehs = [];
+private _newDead = [];
 
 private ["_unit", "_posVeh", "_dist", "_color", "_crew"];
 for "_i" from 0 to (count _newList - 1) do {
@@ -97,8 +96,8 @@ for "_i" from 0 to (count _newList - 1) do {
 //=======================================//
 //                UAV tags               //
 //=======================================//
+private _vehs = [];
 private ["_uav", "_control", "_posVeh"];
-_vehs = [];
 for "_i" from 0 to (count _uavs - 1) do {
     _uav = _uavs select _i;
     if(alive _uav) then {

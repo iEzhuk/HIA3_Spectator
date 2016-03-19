@@ -128,7 +128,5 @@
 #define MOUSE_LEFT          0
 #define MOUSE_RIGHT         1
 
-#define PR(x) private ['x']; x
-
 #define NAME(x) if(isPlayer (x))then{(x) getVariable ["PlayerName", name (x)]}else{((x) getVariable ["PlayerName", name (x)])+" [AI]"}
 #define SIDE(x) (x) getVariable ["PlayerSide", side (x)]

@@ -14,10 +14,10 @@
         Nothing
 */
 #include "defines.sqf"
-private ["_vehs", "_unit", "_last_time"];
-_vehs = [];
-_unit = HIA3_Spectator_ViewUnit;
-_last_time = HIA3_Spectator_LastFrameTime;
+
+private _vehs = [];
+private _unit = HIA3_Spectator_ViewUnit;
+private _last_time = HIA3_Spectator_LastFrameTime;
 HIA3_Spectator_LastFrameTime = diag_tickTime;
 
 

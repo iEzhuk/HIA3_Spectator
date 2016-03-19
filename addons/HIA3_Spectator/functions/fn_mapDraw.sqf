@@ -17,10 +17,10 @@
 
 if(isNil "HIA3_Spectator_CamVision") exitWith {};
 
-PR(_posCam) = call HIA3_spectator_fnc_currentPosition;
-PR(_dirCam) = call HIA3_spectator_fnc_currentDir;
-PR(_iconCam)= gettext (configfile >> "RscDisplayCamera" >> "iconCamera");
-PR(_colorCam) = [side HIA3_Spectator_ViewUnit] call BIS_fnc_sideColor;
+private _posCam = call HIA3_spectator_fnc_currentPosition;
+private _dirCam = call HIA3_spectator_fnc_currentDir;
+private _iconCam = gettext (configfile >> "RscDisplayCamera" >> "iconCamera");
+private _colorCam = [side HIA3_Spectator_ViewUnit] call BIS_fnc_sideColor;
 _ctrlMap = _this select 0;
 
 if !(isNil {HIA3_Spectator_ViewUnit}) then {

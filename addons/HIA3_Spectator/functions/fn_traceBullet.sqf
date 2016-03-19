@@ -12,10 +12,7 @@
     Returns:
         Nothing
  */
-private ["_shooter","_maxLines","_event"];
-
-_shooter  = [_this,0,objNull] call BIS_fnc_param;
-_maxLines = [_this,1,10] call BIS_fnc_param;
+params [["_shooter", objNull], ["_maxLines", 10]];
 
 switch (true) do {
     case (_maxLines <= 0): {
@@ -38,7 +35,7 @@ switch (true) do {
 
         {_shooter removeEventHandler ["Fired", _x];} foreach (_shooter getVariable ["SPECT_BT_Fired",[]]);
 
-        _event = _shooter addEventHandler ["Fired", {[_this select 0, position (_this select 6), _this select 6] spawn HIA3_spectator_fnc_bulletTrace_fired;}];
+        private _event = _shooter addEventHandler ["Fired", {[_this select 0, position (_this select 6), _this select 6] spawn HIA3_spectator_fnc_bulletTrace_fired;}];
         _shooter setVariable ["SPECT_BT_Fired", [_event]];
 
         if !(_shooter in HIA3_Spectator_TraceBulletList) then {

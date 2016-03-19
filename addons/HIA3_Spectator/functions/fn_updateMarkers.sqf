@@ -20,14 +20,13 @@
 
 if(isNil "HIA3_Spectator_UnitList") exitWith {};
 
-private ["_unitList", "_oldObjMarkers", "_toDel", "_newObjMarkers", "_vehs", "_needUpdate", "_showName"];
-_unitList = HIA3_Spectator_UnitList;
-_oldObjMarkers = HIA3_Spectator_ObjMarkers;
-_toDel = HIA3_Spectator_ObjMarkers;
-_newObjMarkers = [];
-_vehs = [];
-_needUpdate = HIA3_Spectator_MapShowName_NeedUpdate;
-_showName = HIA3_Spectator_MapShowName;
+private _unitList = HIA3_Spectator_UnitList;
+private _oldObjMarkers = HIA3_Spectator_ObjMarkers;
+private _toDel = HIA3_Spectator_ObjMarkers;
+private _newObjMarkers = [];
+private _vehs = [];
+private _needUpdate = HIA3_Spectator_MapShowName_NeedUpdate;
+private _showName = HIA3_Spectator_MapShowName;
 
 private ["_obj", "_veh", "_pos", "_marker", "_type", "_text", "_unit", "_type", "_size", "_color", "_Cmarker"];
 for "_i" from 0 to (count _unitList - 1) do {

@@ -14,9 +14,7 @@
     Returns:
         Nothing
 */
-private ["_seagull"];
-
-_seagull = _this select 0;
+params ["_seagull"];
 
 [] spawn {
     titleCut ["", "BLACK OUT", 4];

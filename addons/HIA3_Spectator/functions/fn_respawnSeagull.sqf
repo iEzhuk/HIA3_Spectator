@@ -15,8 +15,7 @@
 		Nothing
 */
 
-private ["_seagull"];
-_seagull = _this select 0;
+params ["_seagull"];
 
 if !(isNil "_seagull") then {
 	_seagull setPos [-5000,-5000,5000];

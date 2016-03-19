@@ -4,12 +4,9 @@
     Author(s):
         Ezhuk
  */
-private ["_shooter","_start","_round","_startSpeed"];
-_shooter = _this select 0;
-_start = _this select 1;
-_round = _this select 2;
+params ["_shooter","_start","_round","_startSpeed"];
 
-_startSpeed = (velocity _round) call BIS_fnc_magnitude;
+private _startSpeed = (velocity _round) call BIS_fnc_magnitude;
 
 _shooter setVariable ["SPECT_BT_flying", (_shooter getVariable "SPECT_BT_flying") + 1    ];
 _shooter setVariable ["SPECT_BT_colors", (_shooter getVariable "SPECT_BT_colors") + [[]] ];

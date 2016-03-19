@@ -15,9 +15,12 @@
 */
 #include "defines.sqf"
 
+private _dir = 0;
 if !(isNil {HIA3_Spectator_ViewUnit}) then {
-    PR(_dir) = if(HIA3_Spectator_State == SPECT_VIEWSTATE_INTERNAL)then{getDir HIA3_Spectator_ViewUnit}else{getDir HIA3_Spectator_Camera};
-    _dir
-}else{
-    0
+    if (HIA3_Spectator_State == SPECT_VIEWSTATE_INTERNAL) then {
+        _dir = getDir HIA3_Spectator_ViewUnit;
+    } else {
+        _dir = getDir HIA3_Spectator_Camera;
+    };
 };
+_dir

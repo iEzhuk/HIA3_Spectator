@@ -15,10 +15,7 @@
 */
 #include "defines.sqf"
 
-PR(_key)    = _this select 1;
-PR(_shift)  = _this select 2;
-PR(_ctrl)   = _this select 3;
-PR(_alt)    = _this select 4;
+params ["_disp", "_key", "_shift", "_ctrl", "_alt"];
 
 switch (_key) do
 {

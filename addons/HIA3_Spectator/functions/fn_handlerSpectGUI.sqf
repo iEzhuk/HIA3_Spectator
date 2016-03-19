@@ -16,10 +16,8 @@
 */
 
 #include "defines.sqf"
-
-PR(_event) = _this select 0;
-PR(_arg) = _this select 1;
-PR(_return) = false;
+params ["_event", "_arg"];
+private _return = false;
 
 switch (_event) do
 {
@@ -27,7 +25,7 @@ switch (_event) do
     //                              DISAPLAY
     //=====================================================================
     case "init":{
-        PR(_display) = _arg select 0;
+        _arg params ["_display"];
         uiNamespace setVariable ['HIA3_DisaplaySpectatorGUIext', _display];
         HIA3_Spectator_PlayerListGUIExt = [];
         HIA3_Spectator_GUIExt_curSide = playerSide;
@@ -39,10 +37,7 @@ switch (_event) do
         HIA3_Spectator_GUIExt_curSide = nil;
     };
     case "disp_keyDown":{
-        PR(_key)    = _arg select 1;
-        PR(_shift)  = _arg select 2;
-        PR(_ctrl)   = _arg select 3;
-        PR(_alt)    = _arg select 4;
+        _arg params ["_disp", "_key", "_shift", "_ctrl", "_alt"];
 
         if(_key == KEY_TAB) then {
             if(dialog) then {
@@ -52,21 +47,21 @@ switch (_event) do
     };
     case "update_playerlist" :
     {
-        PR(_selectedSide) = _arg select 0;
+        _arg params ["_selectedSide"];
         HIA3_Spectator_GUIExt_curSide = _selectedSide;
 
-        PR(_display) = uiNamespace getVariable "HIA3_DisaplaySpectatorGUIext";
+        private _display = uiNamespace getVariable "HIA3_DisaplaySpectatorGUIext";
         if(isNil "_display") exitWith {
             diag_log "HIA3_spectator_fnc_handlerSpectGUI: <update_playerlist> _display is NULL";
         };
 
         // Update buttons
-        PR(_ctrlInd) = IDC_SPECT_BUTTON_1;
+        private _ctrlInd = IDC_SPECT_BUTTON_1;
         {
-            PR(_side) = _x;
-            PR(_count) = {alive _x && side _x == _side} count allUnits;
+            private _side = _x;
+            private _count = {alive _x && side _x == _side} count allUnits;
 
-            PR(_ctrl) = _display displayCtrl _ctrlInd;
+            private _ctrl = _display displayCtrl _ctrlInd;
 
             _ctrl ctrlSetText str(_count);
             _ctrl ctrlCommit 0;
@@ -76,11 +71,11 @@ switch (_event) do
 
 
         // Update list
-        PR(_playerlist) = _display displayCtrl IDC_SPECT_PLAYERLIST;
+        private _playerlist = _display displayCtrl IDC_SPECT_PLAYERLIST;
 
         HIA3_Spectator_PlayerListGUIExt = [];
 
-        PR(_ind) = 0;
+        private _ind = 0;
         lbClear _playerlist;
         {
             if(side _x == _selectedSide && alive _x) then {
@@ -99,21 +94,15 @@ switch (_event) do
     };
     case "playerList_lb_changed" :
     {
-        PR(_lbInd) = _arg select 1;
+        _arg params ["_ctrl", "_lbInd"];
 
-        PR(_display) = uiNamespace getVariable "HIA3_DisaplaySpectatorGUIext";
-        if(isNil "_display") exitWith {
-            diag_log "HIA3_spectator_fnc_handlerSpectGUI: <playerList_lb_changed> _display is NULL";
-        };
-
-        PR(_playerlist) = _display displayCtrl IDC_SPECT_PLAYERLIST;
-        PR(_ind) = parseNumber(_playerlist lbData _lbInd);
+        private _ind = parseNumber(_ctrl lbData _lbInd);
 
         if(_ind < 0) exitWith {
             diag_log "HIA3_spectator_fnc_handlerSpectGUI: <playerList_lb_changed> _ind < 0";
         };
 
-        PR(_unit) = HIA3_Spectator_PlayerListGUIExt select _ind;
+        private _unit = HIA3_Spectator_PlayerListGUIExt select _ind;
 
         if(_unit in HIA3_Spectator_UnitList && alive _unit) then {
             [_unit] call HIA3_spectator_fnc_changeTargetUnit;

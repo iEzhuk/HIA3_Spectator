@@ -15,9 +15,9 @@
 */
 #include "defines.sqf"
 
-PR(_newState) = _this;
-PR(_lastState) = HIA3_Spectator_State;
-PR(_dialog) = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
+private _newState = _this;
+private _lastState = HIA3_Spectator_State;
+private _dialog = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
 
 
 HIA3_Spectator_State = _newState;
@@ -36,9 +36,9 @@ switch(_newState) do {
     case SPECT_VIEWSTATE_ATTACH :
     {
 
-        PR(_pos) = getPosASL HIA3_Spectator_ViewUnit;
-        PR(_dir) = getDir HIA3_Spectator_ViewUnit;
-        PR(_camPos) = [
+        private _pos = getPosASL HIA3_Spectator_ViewUnit;
+        private _dir = getDir HIA3_Spectator_ViewUnit;
+        private _camPos = [
             (_pos select 0) + sin(_dir+180)*7,
             (_pos select 1) + cos(_dir+180)*7,
             (_pos select 2) + 3
@@ -82,9 +82,9 @@ switch(_newState) do {
     };
     case SPECT_VIEWSTATE_FREE :
     {
-        PR(_pos) = getPosASL HIA3_Spectator_ViewUnit;
-        PR(_dir) = getDir HIA3_Spectator_ViewUnit;
-        PR(_camPos) = ASLtoATL [(_pos select 0) + sin(_dir+180)*7, (_pos select 1) + cos(_dir+180)*7, (_pos select 2) + 3];
+        private _pos = getPosASL HIA3_Spectator_ViewUnit;
+        private _dir = getDir HIA3_Spectator_ViewUnit;
+        private _camPos = ASLtoATL [(_pos select 0) + sin(_dir+180)*7, (_pos select 1) + cos(_dir+180)*7, (_pos select 2) + 3];
 
         if(_lastState != SPECT_VIEWSTATE_INTERNAL) then {
             camDestroy HIA3_Spectator_Camera;
