@@ -168,6 +168,10 @@
                 <Original>m</Original>
                 <Russian>м</Russian>
             </Key>
+            <Key ID="STR_HIA3_Bug">
+                <Original>This slot are broken. Restart Arma3 and find another slot.</Original>
+                <Russian>Данный слот недоступен из за бага. Перезапустите Arma3 и зайдите на другой слот.</Russian>
+            </Key>
         </Container>
     </Package>
 </Project>

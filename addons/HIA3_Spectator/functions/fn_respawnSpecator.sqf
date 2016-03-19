@@ -29,14 +29,20 @@ _seagull = _this select 0;
     "radialBlur" ppEffectEnable false;
     "DynamicBlur" ppEffectEnable false;
     "dynamicBlur" ppEffectEnable false;
-    "filmGrain" ppEffectEnable false; 
+    "filmGrain" ppEffectEnable false;
     "chromAberration" ppEffectEnable false;
 
     // Hide map
     forceMap false;
 
     // Launch spectator
-    ("HIA3_SPECTATOR" call BIS_fnc_rscLayer) cutRsc ["RscHIA3Specator","PLAIN"];
+    // End game if bug
+    if (not local player) then {
+        [ (format [ "<t size='1.4' color='#7f0505' shadow=2 >%1</t>", localize "STR_HIA3_Bug"] ), 0, 0.5, 15, 0, 0, 31] spawn bis_fnc_dynamicText;
+        ["end1",false,0] call BIS_fnc_endMission;
+    } else {
+        ("HIA3_SPECTATOR" call BIS_fnc_rscLayer) cutRsc ["RscHIA3Specator","PLAIN"];
+    };
 };
 
 if !(isNil "_seagull") then {
