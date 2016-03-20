@@ -98,21 +98,23 @@ while{HIA3_Spectator_Enable} do
         _veh = vehicle HIA3_Spectator_ViewUnit;
         _text = "";
 
-        _text = format ["<t size='1.8'> %1 %2</t><br/>", count crew _veh, getText(configFile>>"CfgVehicles">>typeOf _veh>>"displayName")];
+        _text = format ["<t size='1.8'> %1 - %2</t><br/>", {alive _x} count crew _veh, getText(configFile>>"CfgVehicles">>typeOf _veh>>"displayName")];
 
         {
-            _icon = "getincargo_ca.paa";
+            if (alive _x) then {
+                _icon = "getincargo_ca.paa";
 
-            if(_x == driver _veh) then {
-                _icon = "getindriver_ca.paa";
+                if(_x == driver _veh) then {
+                    _icon = "getindriver_ca.paa";
+                };
+                if(_x == gunner _veh) then {
+                    _icon = "getingunner_ca.paa";
+                };
+                if(_x == commander _veh) then {
+                    _icon = "getincommander_ca.paa";
+                };
+                _text = _text + format ["<t size='1.1'> <img image='\A3\ui_f\data\igui\cfg\actions\%1'></t><t size='1.5'> %2</t><br/>",_icon, NAME(_x)];
             };
-            if(_x == gunner _veh) then {
-                _icon = "getingunner_ca.paa";
-            };
-            if(_x == commander _veh) then {
-                _icon = "getincommander_ca.paa";
-            };
-            _text = _text + format ["<t size='1.1'> <img image='\A3\ui_f\data\igui\cfg\actions\%1'></t><t size='1.5'> %2</t><br/>",_icon, NAME(_x)];
         } forEach (crew _veh);
 
         _ctrlCrew ctrlSetStructuredText (parseText _text);

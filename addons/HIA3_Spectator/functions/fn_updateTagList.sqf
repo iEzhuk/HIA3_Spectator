@@ -84,7 +84,7 @@ for "_i" from 0 to (count _newList - 1) do {
             }else{
                 if(!(_veh in _vehs) and !(_veh in allUnitsUav)) then {
                     _crew = crew _veh;
-                    _text = format ["(%2) %1", NAME(_crew select 0), count _crew];
+                    _text = format ["(%2) %1", NAME(_crew select 0), {alive _x} count _crew];
                     _newVehs pushBack [_veh, _text, _color, [_veh] call HIA3_spectator_fnc_getIcon];
                     _vehs pushBack _veh;
                 };
