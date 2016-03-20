@@ -55,7 +55,7 @@ if(isNil "HIA3_Spectator_UnitList") exitWith {};
 HIA3_Spectator_UnitList = _newList;
 
 private _uavs = allUnitsUav;
-private _deadList = allDead;
+private _deadList = allDeadMen;
 
 //=======================================//
 //               Find alive units        //
@@ -129,7 +129,7 @@ for "_i" from 0 to (count _deadList - 1) do {
     if(_unit isKindOf "CAmanBase") then {
         _pos = getPos _unit;
         _dist = [_posCam select 0, _posCam select 1, 0] distance [_pos select 0, _pos select 1, 0];
-        if(_dist < viewDistance+1500) then {
+        if(_dist < viewDistance+1500 and (getPosATL _unit select 2) > -10) then {
             _color = [0,0,0,0];
             _text = _unit getVariable ["PlayerName", "[AI]"];
             if (_text != "[AI]") then {
