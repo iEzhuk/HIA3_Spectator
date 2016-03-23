@@ -79,6 +79,13 @@ switch (_event) do
         uiNamespace setVariable ['HIA3_SpectatorEvents', [_handKeyDown,_handKeyUp,_handMouseMoving,_handMouseButtonDown,_handMouseButtonUp]];
 
         [] spawn HIA3_spectator_fnc_mapLoop;
+
+        // ace compability
+        if not isNil "ace_common_fnc_addCanInteractWithCondition" then {
+            ace_hearing_disableVolumeUpdate = true;
+            ace_hearing_deafnessDV = 0;
+            ["isNotSpectating", {!HIA3_Spectator_Enable}] call ace_common_fnc_addCanInteractWithCondition;
+        };
     };
     case "close":{
         HIA3_Spectator_Keys = [];

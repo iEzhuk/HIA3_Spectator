@@ -20,12 +20,11 @@ disableSerialization;
 private _dialog   = uiNamespace getVariable ['HIA3_DisaplaySpectator', 0];
 private _ctrlName = _dialog displayCtrl IDD_SPECTATOR_PLAYER_NAME;
 private _ctrlTime = _dialog displayCtrl IDD_SPECTATOR_TIME;
-private _ctrlCrew  = _dialog displayCtrl IDD_SPECTATOR_CREW;
+private _ctrlCrew = _dialog displayCtrl IDD_SPECTATOR_CREW;
 
 private ["_text", "_leftTime", "_min", "_sec", "_ctrlInd", "_side", "_ctrl", "_count", "_color", "_veh", "_text", "_icon"];
-while{HIA3_Spectator_Enable} do
-{
-    call HIA3_spectator_fnc_updateTagList;
+while {HIA3_Spectator_Enable} do {
+    [] call HIA3_spectator_fnc_updateTagList;
 
     _text = "";
     switch (true) do {
